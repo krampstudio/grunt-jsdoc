@@ -30,7 +30,10 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.3.14"
+    "grunt": "~0.3.x"
+  },
+  "dependencies": {
+    "jsdoc3" : "git://github.com/jsdoc3/jsdoc.git"
   },
   "keywords": [
     "gruntplugin"
