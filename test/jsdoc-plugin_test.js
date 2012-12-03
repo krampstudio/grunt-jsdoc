@@ -1,3 +1,6 @@
+/**
+ * Requires grunt
+ */
 var grunt = require('grunt');
 
 /*
@@ -20,6 +23,10 @@ var grunt = require('grunt');
     test.ifError(value)
 */
 
+/**
+ * EXported tests
+ * @class tests
+ */
 exports['jsdoc-plugin'] = {
 	setUp: function(done) {
 		grunt.loadNpmTasks('jsdoc');

@@ -2,12 +2,12 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-		jsdoc : {
-			doc: {
-				src: ['src/*.js', 'test/*.js'],
-				dest: 'tmp'
-			}
+	jsdoc : {
+		dist : {
+			src: ['tasks/*.js', 'test/*.js'],
+			dest: 'tmp'
 		}
+	}
   });
 
   // Load local tasks.
