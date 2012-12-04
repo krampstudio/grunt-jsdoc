@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
 	jsdoc : {
 		dist : {
-			src: ['tasks/*.js', 'test/*.js'],
+			src: ['tasks/*.js'],
 			dest: 'tmp'
 		}
 	}
