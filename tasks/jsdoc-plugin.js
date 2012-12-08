@@ -1,10 +1,20 @@
 /**
- * @project grunt-jsdoc-plugin
- * @copyright 2012
+ * @fileoverview This task helps you to run jsdoc3 to generate doc in your Grunt build sequence
+ * @module tasks/jsdoc
+ *
  * @author Bertrand Chevrier <chevrier.bertrand@gmail.com>
- * @license Licensed under the MIT license.
+ * @license MIT
  */
-module.exports = function(grunt) {
+
+/**
+ * Register the jsdoc task and helpers to Grunt
+ * @function jsDocTask
+ * @requires jsdoc
+ *
+ * @param {Object} grunt - the grunt context
+ *
+ */
+module.exports = function jsDocTask(grunt) {
 	'use strict';
 
 	var util = require('util'),
@@ -13,10 +23,12 @@ module.exports = function(grunt) {
 			task	: 3	
 	 	};
 
+
 	/**
-	 * @gruntTask jsdoc
-	 */
-	grunt.registerMultiTask('jsdoc', 'Generates source documentation using jsdoc', function() {
+     * Register the jsdoc task to Grunt
+     * @function registerJsdocTask
+     */
+	grunt.registerMultiTask('jsdoc', 'Generates source documentation using jsdoc', function registerJsdocTask() {
 		
 		//grunt.log.write(" src:  " + grunt.config.get('file'));
 		//grunt.log.write("Helper : " + grunt.helper('jsdoc'));
@@ -30,16 +42,21 @@ module.exports = function(grunt) {
 
 
 		/**
-		 * Build the jsdoc to execute 
+		 * Build the jsdoc to execute.
+		 * @function buildCmd
 		 * @param {Array} sources
 		 * @param {String} destination
 		 * @return {String} command
 		 */
 		var buildCmd = function(sources, destination){
-			return jsdocBin 
+			var cmd= jsdocBin 
 					+ ' -r '					//recursive by default 
 					+ ' -d ' + destination 		//set the output destination
 					+ ' ' + sources.join(' ');	//list the sources to parse
+
+			grunt.log.debug(cmd);
+			
+			return cmd;
 		};
 
 		//check if jsdoc npm module is installed
