@@ -12,7 +12,6 @@
  * @requires jsdoc
  *
  * @param {Object} grunt - the grunt context
- *
  */
 module.exports = function jsDocTask(grunt) {
 	'use strict';
@@ -23,21 +22,18 @@ module.exports = function jsDocTask(grunt) {
 			task	: 3	
 	 	};
 
-
 	/**
      * Register the jsdoc task to Grunt
      * @function registerJsdocTask
      */
 	grunt.registerMultiTask('jsdoc', 'Generates source documentation using jsdoc', function registerJsdocTask() {
 		
-		//grunt.log.write(" src:  " + grunt.config.get('file'));
-		//grunt.log.write("Helper : " + grunt.helper('jsdoc'));
-		
 		var exec		= require('child_process').exec,
 		    fs			= require('fs'),
 		    done		= this.async(),
 			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
 		    dest		= grunt.task.current.file.dest || 'doc',
+			javaHome	= process.env.JAVA_NOME,
 			jsdocBin	= 'node_modules/jsdoc/jsdoc';
 
 
@@ -50,7 +46,6 @@ module.exports = function jsDocTask(grunt) {
 		 */
 		var buildCmd = function(sources, destination){
 			var cmd= jsdocBin 
-					+ ' -r '					//recursive by default 
 					+ ' -d ' + destination 		//set the output destination
 					+ ' ' + sources.join(' ');	//list the sources to parse
 
@@ -59,11 +54,14 @@ module.exports = function jsDocTask(grunt) {
 			return cmd;
 		};
 
-		//check if jsdoc npm module is installed
-	//	if(require('node_modules/jsdoc/jsdoc') === undefined){
-	//		grunt.log.error('jsdoc module is not found, please install dependencies');
-	//		grunt.fail.warn('Missing dependency', errorCode.generic);
-	//	}
+		//check if java is set
+		if(!javaHome){
+			grunt.log.warn("JAVA_HOME is no set, but java is required by jsdoc to run.");
+		} else {
+			grunt.log.debug("JAVA_HOME : " + javaHome);
+		}
+
+		//@todo check if jsdoc npm module is installed
 
 		//check if there is sources to generate the doc for
 		if(srcs.length === 0){
