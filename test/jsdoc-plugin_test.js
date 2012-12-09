@@ -1,46 +1,68 @@
 /**
- * Requires grunt
+ * @fileoverview NodeUnit test 
+ * @copyright Bertrand Chevrier 2012
+ * @author Bertrand Chevrier <chevrier.bertrand@gmail.com>
+ * @license MIT
+ * 
+ * @module test/jsdoc-plugin_test
+ */
+
+
+/**
+ * @requires grunt
  */
 var grunt = require('grunt');
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
-
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
 
 /**
- * EXported tests
- * @class tests
+ * This function enables you to extract 
+ * the declared arguments from a function
+ * @function extractArgs
+ * @param {Function} fn - the function to extract the arguments for
+ * @return {Array} the list of arguments
+ * @throws {Error} in case of wrong argument given
  */
-exports['jsdoc-plugin'] = {
+var extractArgs = function(fn){
+	if(typeof fn !== 'function'){
+		throw new Error('TypeError : The extractArgs function requires the fn argument to be a function!');
+	}
+	return fn.toString ().match (/function\s+\w*\s*\((.*?)\)/)[1].split (/\s*,\s*/);
+}
+
+/**
+ * NodeUnit group of test that check the jsdoc Grunt task.
+ * 
+ * @see https://github.com/caolan/nodeunit/
+ * 
+ * @class JsdocTest
+ */
+exports['JsdocTest'] = {
+	
+	/**
+	 * Set up the test by load the tasks/jsdoc-plugin module
+	 * @memberOf JsdocTest
+	 * @param {Function} done - to call once the setup is done.
+	 */
 	setUp: function(done) {
-		grunt.loadNpmTasks('jsdoc');
+		'use strict';
+
+		this.jsdocTask = require('../tasks/jsdoc-plugin');
 		done();
 	},
-	'helper': function(test) {
-		test.expect(1);
-		test.equal(grunt.helper('jsdoc'), 'Running jsdoc-toolkit', 'should return the correct value.');
-		test.done();
-	},
-	'task' : function(test){
-		test.expect(1);
-		grunt.npmTasks('jsdoc');
-		test.ok(true);
+
+	/**
+	 * Check the task is loaded and complies with the grunt requirements.
+	 * @memberOf JsdocTest
+	 * @param {Object} test - the node unit test context
+	 */
+	'taskCheck' : function(test){
+		
+		test.notStrictEqual(this.jsdocTask, undefined, 'the jsdoc task should be set up');
+		test.equal(typeof this.jsdocTask, 'function', 'the task must be a function');	
+		
+		var taskArgs = extractArgs(this.jsdocTask);
+		test.ok(taskArgs.length > 0 && taskArgs[0] === 'grunt', 'the task must declare the grunt context as 1st parameter');
+		
 		test.done();
 	}
 };

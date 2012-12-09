@@ -4,9 +4,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
 	jsdoc : {
 		dist : {
-			src: ['tasks/*.js'],
-			dest: 'tmp'
+			src: ['tasks/*.js', 'test/*_test.js'],
+			dest: 'doc'
 		}
+	},
+	test : {
+		files : ['test/*_test.js']
 	}
   });
 
@@ -14,6 +17,6 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', 'jsdoc');
+  grunt.registerTask('default', 'lint test');
 
 };

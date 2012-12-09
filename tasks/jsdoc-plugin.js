@@ -1,16 +1,15 @@
 /**
  * @fileoverview This task helps you to run jsdoc3 to generate doc in your Grunt build sequence
- * @module tasks/jsdoc
- *
+ * @copyright Bertrand Chevrier 2012
  * @author Bertrand Chevrier <chevrier.bertrand@gmail.com>
  * @license MIT
+ * 
+ * @module tasks/jsdoc-plugin
  */
 
 /**
  * Register the jsdoc task and helpers to Grunt
- * @function jsDocTask
- * @requires jsdoc
- *
+ * @constructor
  * @param {Object} grunt - the grunt context
  */
 module.exports = function jsDocTask(grunt) {
@@ -24,22 +23,23 @@ module.exports = function jsDocTask(grunt) {
 
 	/**
      * Register the jsdoc task to Grunt
-     * @function registerJsdocTask
+     * @memberOf module:tasks/jsdoc-plugin
      */
-	grunt.registerMultiTask('jsdoc', 'Generates source documentation using jsdoc', function registerJsdocTask() {
+	function registerJsdocTask() {
 		
 		var exec		= require('child_process').exec,
 		    fs			= require('fs'),
 		    done		= this.async(),
 			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
 		    dest		= grunt.task.current.file.dest || 'doc',
-			javaHome	= process.env.JAVA_NOME,
-			jsdocBin	= 'node_modules/jsdoc/jsdoc';
+			javaHome	= process.env.JAVA_HOME,
+			jsdocBin	= 'node_modules/jsdoc/jsdoc',
+			timeout		= 60000;
 
 
 		/**
 		 * Build the jsdoc to execute.
-		 * @function buildCmd
+		 * @memberOf module:tasks/jsdoc-plugin.registerJsdocTask
 		 * @param {Array} sources
 		 * @param {String} destination
 		 * @return {String} command
@@ -56,7 +56,7 @@ module.exports = function jsDocTask(grunt) {
 
 		//check if java is set
 		if(!javaHome){
-			grunt.log.warn("JAVA_HOME is no set, but java is required by jsdoc to run.");
+			grunt.log.error("JAVA_HOME is no set, but java is required by jsdoc to run.");
 		} else {
 			grunt.log.debug("JAVA_HOME : " + javaHome);
 		}
@@ -76,17 +76,20 @@ module.exports = function jsDocTask(grunt) {
 			}
 
 			//execution of the jsdoc command
-			exec(buildCmd(srcs, dest), function (error, stdout, stderr) {
-				grunt.log.debug('stdout: ' + stdout + '\n');
-				grunt.log.debug('stderr: ' + stderr + '\n');
+			exec(buildCmd(srcs, dest), {timeout: timeout},  function (error, stdout, stderr) {
+				grunt.log.debug('stdout: ' + stdout);
+				grunt.log.debug('stderr: ' + stderr);
 				if (error) {
 					grunt.log.error('jsdoc error: ' + error);
 					grunt.fail.warn('jsdoc failure', errorCode.task);
 				}
-				grunt.log.write('Documentation generated to '+ dest);	
+				grunt.log.write('Documentation generated to : '+ dest);	
 				
 				done(true);
 			});
 		});
-	});
+	}
+
+	//bind the task to the grunt context
+	grunt.registerMultiTask('jsdoc', 'Generates source documentation using jsdoc', registerJsdocTask);
 };
