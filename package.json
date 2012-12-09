@@ -1,6 +1,6 @@
 {
   "name": "grunt-jsdoc-plugin",
-  "description": "Generate your JsDoc using jsdoc-toolkit",
+  "description": "Integrates jsdoc3 generation into your Grunt build",
   "version": "0.1.0",
   "homepage": "https://github.com/krampstudio/grunt-jsdoc-plugin",
   "author": {
@@ -36,6 +36,6 @@
     "jsdoc3" : "git://github.com/jsdoc3/jsdoc.git"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin", "grunt", "jsdoc", "jsdoc3"
   ]
 }
