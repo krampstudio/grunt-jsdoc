@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+	'use strict';
 
   // Project configuration.
   grunt.initConfig({
@@ -10,6 +11,15 @@ module.exports = function(grunt) {
 	},
 	test : {
 		files : ['test/*_test.js']
+	},
+	lint : {
+		files : ['grunt.js', 'tasks/*.js', 'test/*.js']
+	},
+	jshint : {
+		options: {
+			node : true,
+			smarttabs : true
+		}
 	}
   });
 

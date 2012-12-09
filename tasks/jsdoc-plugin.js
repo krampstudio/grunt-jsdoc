@@ -19,7 +19,7 @@ module.exports = function jsDocTask(grunt) {
 	    errorCode = {
 			generic : 1,
 			task	: 3	
-	 	};
+		};
 
 	/**
      * Register the jsdoc task to Grunt
@@ -29,7 +29,7 @@ module.exports = function jsDocTask(grunt) {
 		
 		var exec		= require('child_process').exec,
 		    fs			= require('fs'),
-		    done		= this.async(),
+		    done		= grunt.task.current.async(),
 			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
 		    dest		= grunt.task.current.file.dest || 'doc',
 			javaHome	= process.env.JAVA_HOME,
@@ -45,12 +45,8 @@ module.exports = function jsDocTask(grunt) {
 		 * @return {String} command
 		 */
 		var buildCmd = function(sources, destination){
-			var cmd= jsdocBin 
-					+ ' -d ' + destination 		//set the output destination
-					+ ' ' + sources.join(' ');	//list the sources to parse
-
+			var cmd = jsdocBin + ' -d ' + destination +' ' + sources.join(' ');
 			grunt.log.debug(cmd);
-			
 			return cmd;
 		};
 

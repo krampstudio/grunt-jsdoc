@@ -16,18 +16,19 @@ var grunt = require('grunt');
 
 /**
  * This function enables you to extract 
- * the declared arguments from a function
- * @function extractArgs
- * @param {Function} fn - the function to extract the arguments for
- * @return {Array} the list of arguments
- * @throws {Error} in case of wrong argument given
+ * the declared arguments from a function.
+ * @param {function} fn - the function to extract the arguments for
+ * @returns {array} the list of arguments
+ * @throw {error} in case of wrong argument given
  */
 var extractArgs = function(fn){
+	'use strict';
+
 	if(typeof fn !== 'function'){
 		throw new Error('TypeError : The extractArgs function requires the fn argument to be a function!');
 	}
 	return fn.toString ().match (/function\s+\w*\s*\((.*?)\)/)[1].split (/\s*,\s*/);
-}
+};
 
 /**
  * NodeUnit group of test that check the jsdoc Grunt task.
@@ -36,7 +37,7 @@ var extractArgs = function(fn){
  * 
  * @class JsdocTest
  */
-exports['JsdocTest'] = {
+exports.JsdocTest = {
 	
 	/**
 	 * Set up the test by load the tasks/jsdoc-plugin module
@@ -56,7 +57,8 @@ exports['JsdocTest'] = {
 	 * @param {Object} test - the node unit test context
 	 */
 	'taskCheck' : function(test){
-		
+		'use strict';	
+	
 		test.notStrictEqual(this.jsdocTask, undefined, 'the jsdoc task should be set up');
 		test.equal(typeof this.jsdocTask, 'function', 'the task must be a function');	
 		
