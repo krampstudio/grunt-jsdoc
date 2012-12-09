@@ -2,38 +2,85 @@
 
 This plugin enables you to integrate generation of comment based documentation into your Grunt build.
 
-## Getting Started
 
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-jsdoc-plugin`
+## Install
 
-Then configure the plugin to your project's `grunt.js` gruntfile:
+You need [grunt] as well as [node] and [npm] installed and running on your system.
 
-1. add the `jsdoc` entry to the `initConfig` method 
-2. load the plugin
+You also need `java` installed and a valid `JAVA_HOME` environment variable set.
+
+Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: 
+
+```bash
+npm install grunt-jsdoc-plugin`
+```
+
+## Documentation
+
+### Configuration
+
+Configure the plugin to your project's [grunt.js gruntfile][getting_started]:
+
+First, add the `jsdoc` entry to the options of the `initConfig` method :
 
 ```javascript
 grunt.initConfig({
     jsdoc : {
         dist : {
-            src: ['src/*.js', 'test/*.js'],
+            src: ['src/*.js', 'test/*.js'], 
             dest: 'doc'
         }
     }
 });
+```
+
+The only supported options are 
+
+`src` : an array of pattern that matches the files to extract the documentation from
+`dest`: the directory where the documentation will be generated (it will be created if needed).
+   
+
+Then, load the plugin 
+
+```javascript
 grunt.loadNpmTasks('grunt-jsdoc-plugin');
 ```
 
 [grunt]: https://github.com/cowboy/grunt
+[node]: http://nodejs.org
+[npm]: http://npmjs.org
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
-## Documentation
-_(Coming soon)_
+### Documentation
+
+The current version supports only [jsdoc3] documentation style. The sources configured 
+must contains valid [jsdoc3] tags. Consult the [usejdoc] website for the details.
+
+[usejsdoc]: http://usejsdoc.org
+
+### Build
+
+To generate the documentation, you need to call the `jsdoc` task :
+
+```bash
+$> grunt jsdoc
+```
+
+or integrate it to your build sequence : 
+
+```javascript
+grunt.registerTask('default', 'lint test jsdoc');
+```
 
 ## Contributing
 
+Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc-plugin/issues).
+
 ## Release History
 
- * 0.1.0 First release, include basic support of [jsdoc3]
+ * _0.1.0_ First release, includes basic support of [jsdoc3]
+
+[jsdoc3]: https://github.com/jsdoc3/jsdoc
 
 ## License
 Copyright (c) 2012 Bertrand Chevrier  
