@@ -33,31 +33,68 @@ module.exports = function jsDocTask(grunt) {
 			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
 		    dest		= grunt.task.current.file.dest || 'doc',
 			javaHome	= process.env.JAVA_HOME,
-			jsdocBin	= 'node_modules/jsdoc/jsdoc',
-			timeout		= 60000;
+			timeout		= 60000,
+			jsDoc;
 
 
 		/**
 		 * Build the jsdoc to execute.
 		 * @memberOf module:tasks/jsdoc-plugin.registerJsdocTask
-		 * @param {Array} sources
-		 * @param {String} destination
-		 * @return {String} command
+		 * @param {String} bin the path to the command
+		 * @param {Array} sources the list of sources files 
+		 * @param {String} destination the destination directory
+		 * @return {String} command the command ready to be executed
 		 */
-		var buildCmd = function(sources, destination){
-			var cmd = jsdocBin + ' -d ' + destination +' ' + sources.join(' ');
+		var buildCmd = function(bin, sources, destination){
+			var cmd = bin + ' -d ' + destination +' ' + sources.join(' ');
 			grunt.log.debug(cmd);
 			return cmd;
 		};
 
+		/**
+		 * Lookup for the jsdoc executable throught the different configurations
+		 * @todo find a more elegant way to do that... 
+		 * @memberOf module:tasks/jsdoc-plugin.registerJsdocTask
+		 * @returns {String} the command path relative to the project root 
+		 */
+		var jsDocLookup = function(){
+			
+			var base = 'node_modules/jsdoc/jsdoc',
+				paths = [
+					base, 'node_modules/grunt-jsdoc-plugin/' + base
+				],
+				nodePath = process.env.NODE_PATH,
+				_ = grunt.utils._;
+
+			_.map(nodePath.split(':'), function(p){
+				if(!/\/$/.test(p)){
+					p += '/';
+				}
+				paths.push(p + base);
+			});
+		
+			for(var i in paths){
+				grunt.log.debug('look up jsdoc at ' + paths[i]);
+				if(fs.existsSync(paths[i])){
+					return paths[i];
+				}
+			}
+		};
+		jsDoc = jsDocLookup();
+		
 		//check if java is set
 		if(!javaHome){
 			grunt.log.error("JAVA_HOME is no set, but java is required by jsdoc to run.");
+			grunt.fail.warn('Wrong installation/environnement', errorCode.generic);
 		} else {
 			grunt.log.debug("JAVA_HOME : " + javaHome);
 		}
 
-		//@todo check if jsdoc npm module is installed
+		//check if jsdoc npm module is installedz
+		if(jsDoc === undefined){
+			grunt.log.error('Unable to locate jsdoc');
+			grunt.fail.warn('Wrong installation/environnement', errorCode.generic);
+		}
 
 		//check if there is sources to generate the doc for
 		if(srcs.length === 0){
@@ -72,7 +109,7 @@ module.exports = function jsDocTask(grunt) {
 			}
 
 			//execution of the jsdoc command
-			exec(buildCmd(srcs, dest), {timeout: timeout},  function (error, stdout, stderr) {
+			exec(buildCmd(jsDoc, srcs, dest), {timeout: timeout},  function (error, stdout, stderr) {
 				grunt.log.debug('stdout: ' + stdout);
 				grunt.log.debug('stderr: ' + stderr);
 				if (error) {

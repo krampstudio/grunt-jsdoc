@@ -78,6 +78,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
 
 ## Release History
 
+ * _0.1.1_ Patch to jsdoc lookup
  * _0.1.0_ First release, includes basic support of [jsdoc3]
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
