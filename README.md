@@ -80,8 +80,8 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
 
 
  * _0.1.0_ First release, includes basic support of [jsdoc3]
-   * _0.1.1_ Patch to fix jsdoc lookup (#2)
-   * _0.1.2_ Patch to fix undefined NODE_PATH (#4) 
+   * _0.1.1_ Fix [bug #2](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/2)
+   * _0.1.2_ Fix [bug #4](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/4) 
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
