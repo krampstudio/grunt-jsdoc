@@ -78,8 +78,10 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
 
 ## Release History
 
- * _0.1.1_ Patch to jsdoc lookup
+
  * _0.1.0_ First release, includes basic support of [jsdoc3]
+   * _0.1.1_ Patch to fix jsdoc lookup (#2)
+   * _0.1.2_ Patch to fix undefined NODE_PATH (#4) 
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
