@@ -62,7 +62,7 @@ module.exports = function jsDocTask(grunt) {
 			var base = 'node_modules/jsdoc/jsdoc',
 				paths = [ base, 'node_modules/grunt-jsdoc-plugin/' + base ],
 				nodePath = process.env.NODE_PATH || '',
-				_ = grunt.utils._;
+				_ = grunt.util._;
 
 			_.map(nodePath.split(':'), function(p){
 				if(!/\/$/.test(p)){
