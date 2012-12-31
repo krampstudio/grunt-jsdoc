@@ -46,7 +46,7 @@ module.exports = function jsDocTask(grunt) {
 		 * @return {String} command the command ready to be executed
 		 */
 		var buildCmd = function(bin, sources, destination){
-			var cmd = bin + ' -d ' + destination +' ' + sources.join(' ');
+			var cmd = '"' + bin  + '"' + ' -d ' + destination +' ' + sources.join(' ');
 			grunt.log.debug(cmd);
 			return cmd;
 		};
