@@ -38,7 +38,7 @@ The only supported options are
 
 `src` : an array of pattern that matches the files to extract the documentation from
 `dest`: the directory where the documentation will be generated (it will be created if needed).
-   
+`config` : (optional) a path to a jsdoc config file (refer the usejsdoc documentation below for more information).
 
 Then, load the plugin 
 
