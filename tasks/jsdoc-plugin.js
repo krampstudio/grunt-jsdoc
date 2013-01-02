@@ -32,6 +32,7 @@ module.exports = function jsDocTask(grunt) {
 		    done		= grunt.task.current.async(),
 			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
 		    dest		= grunt.task.current.file.dest || 'doc',
+		    config		= grunt.task.current.data.config,
 			javaHome	= process.env.JAVA_HOME,
 			timeout		= 60000,
 			jsDoc;
@@ -43,10 +44,13 @@ module.exports = function jsDocTask(grunt) {
 		 * @param {String} bin the path to the command
 		 * @param {Array} sources the list of sources files 
 		 * @param {String} destination the destination directory
+		 * @param {String} [config] the path to a jsdoc config file
 		 * @return {String} command the command ready to be executed
 		 */
-		var buildCmd = function(bin, sources, destination){
-			var cmd = '"' + bin  + '"' + ' -d ' + destination +' ' + sources.join(' ');
+		var buildCmd = function(bin, sources, destination, config){
+			var cmd = '"' + bin  + '"';
+			if (config !== undefined) cmd += ' -c ' + config;
+			cmd += ' -d ' + destination + ' ' + sources.join(' ');
 			grunt.log.debug(cmd);
 			return cmd;
 		};
@@ -99,7 +103,13 @@ module.exports = function jsDocTask(grunt) {
 			grunt.log.error('No source files defined');
 			grunt.fail.warn('Wrong configuration', errorCode.generic);
 		}
-		
+
+		//check if jsdoc config file path is provided and does exist
+		if (config !== undefined && !fs.existsSync(config)){
+			grunt.log.error('jsdoc config file path does not exist');
+			grunt.fail.warn('Wrong configuration', errorCode.generic);
+		}
+
 		fs.exists(dest, function(exists){
 			//if the destination don't exists, we create it
 			if(!exists){
@@ -107,7 +117,7 @@ module.exports = function jsDocTask(grunt) {
 			}
 
 			//execution of the jsdoc command
-			exec(buildCmd(jsDoc, srcs, dest), {timeout: timeout},  function (error, stdout, stderr) {
+			exec(buildCmd(jsDoc, srcs, dest, config), {timeout: timeout},  function (error, stdout, stderr) {
 				grunt.log.debug('stdout: ' + stdout);
 				grunt.log.debug('stderr: ' + stderr);
 				if (error) {
