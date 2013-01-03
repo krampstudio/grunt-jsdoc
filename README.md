@@ -36,9 +36,9 @@ grunt.initConfig({
 
 The only supported options are 
 
-`src` : an array of pattern that matches the files to extract the documentation from
-`dest`: the directory where the documentation will be generated (it will be created if needed).
-`config` : (optional) a path to a jsdoc config file (refer the usejsdoc documentation below for more information).
+ * `src` : an array of pattern that matches the files to extract the documentation from
+ * `dest`: the directory where the documentation will be generated (it will be created if needed).
+ * `config` : (optional) a path to a jsdoc config file (refer the [usejsdoc] documentation below for more information).
 
 Then, load the plugin 
 
@@ -46,17 +46,10 @@ Then, load the plugin
 grunt.loadNpmTasks('grunt-jsdoc-plugin');
 ```
 
-[grunt]: https://github.com/cowboy/grunt
-[node]: http://nodejs.org
-[npm]: http://npmjs.org
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
-
 ### Documentation
 
 The current version supports only [jsdoc3] documentation style. The sources configured 
 must contains valid [jsdoc3] tags. Consult the [usejdoc] website for the details.
-
-[usejsdoc]: http://usejsdoc.org
 
 ### Build
 
@@ -88,3 +81,10 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
 ## License
 Copyright (c) 2012 Bertrand Chevrier  
 Licensed under the MIT license.
+
+
+[grunt]: https://github.com/cowboy/grunt
+[node]: http://nodejs.org
+[npm]: http://npmjs.org
+[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[usejsdoc]: http://usejsdoc.org
