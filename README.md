@@ -49,7 +49,7 @@ grunt.loadNpmTasks('grunt-jsdoc-plugin');
 ### Documentation
 
 The current version supports only [jsdoc3] documentation style. The sources configured 
-must contains valid [jsdoc3] tags. Consult the [usejdoc] website for the details.
+must contains valid [jsdoc3] tags. Consult the [usejsdoc] website for the details.
 
 ### Build
 
@@ -75,6 +75,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
  * _0.1.0_ First release, includes basic support of [jsdoc3]
    * _0.1.1_ Fix [bug #2](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/2)
    * _0.1.2_ Fix [bug #4](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/4) 
+   * _0.1.3_ Fix [bug #7](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/7), Add [feature #8](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/8)
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
