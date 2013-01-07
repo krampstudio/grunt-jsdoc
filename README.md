@@ -36,7 +36,7 @@ grunt.initConfig({
 
 The only supported options are 
 
- * `src` : an array of pattern that matches the files to extract the documentation from
+ * `src` : an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
  * `dest`: the directory where the documentation will be generated (it will be created if needed).
  * `config` : (optional) a path to a jsdoc config file (refer the [usejsdoc] documentation below for more information).
 
