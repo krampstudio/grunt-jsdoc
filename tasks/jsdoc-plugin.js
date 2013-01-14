@@ -27,7 +27,7 @@ module.exports = function jsDocTask(grunt) {
      */
 	function registerJsdocTask() {
 		
-		var exec		= require('child_process').exec,
+		var spawn		= require('child_process').spawn,
 		    fs			= require('fs'),
 		    done		= grunt.task.current.async(),
 			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
@@ -39,20 +39,25 @@ module.exports = function jsDocTask(grunt) {
 
 
 		/**
-		 * Build the jsdoc to execute.
+		 * Build the jsdocs arguments
 		 * @memberOf module:tasks/jsdoc-plugin.registerJsdocTask
-		 * @param {String} bin the path to the command
 		 * @param {Array} sources the list of sources files 
 		 * @param {String} destination the destination directory
 		 * @param {String} [config] the path to a jsdoc config file
-		 * @return {String} command the command ready to be executed
+		 * @return {Array} the list of command arguments
 		 */
-		var buildCmd = function(bin, sources, destination, config){
-			var cmd = '"' + bin  + '"';
-			if (config !== undefined) cmd += ' -c ' + config;
-			cmd += ' -d ' + destination + ' ' + sources.join(' ');
-			grunt.log.debug(cmd);
-			return cmd;
+		var buildCmdArgs = function(bin, sources, destination, config){
+			var args = [];
+			//var cmd = '"' + bin  + '"';
+			if (config !== undefined) {
+				args.push('-c');
+				args.push(config);
+			}
+			args.push('-d');
+		   	args.push(destination);
+			args.concat(sources);
+
+			return args;
 		};
 
 		/**
@@ -117,7 +122,14 @@ module.exports = function jsDocTask(grunt) {
 			}
 
 			//execution of the jsdoc command
-			exec(buildCmd(jsDoc, srcs, dest, config), {timeout: timeout},  function (error, stdout, stderr) {
+			var child = spawn('"'+jsDoc+"'", buildCmdArgs(srcs, dest, config));
+		   	child.stdout.on('data', function (data) {
+				  console.log('stdout: ' + data);
+			});
+			child.stderr.on('data', function (data) {
+	  			console.log('stderr: ' + data);
+			});	  
+			/*			exec(buildCmd(jsDoc, srcs, dest, config), {timeout: timeout},  function (error, stdout, stderr) {
 				grunt.log.debug('stdout: ' + stdout);
 				grunt.log.debug('stderr: ' + stderr);
 				if (error) {
@@ -128,6 +140,7 @@ module.exports = function jsDocTask(grunt) {
 				
 				done(true);
 			});
+*/
 		});
 	}
 
