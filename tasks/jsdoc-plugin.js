@@ -28,8 +28,7 @@ module.exports = function jsDocTask(grunt) {
      */
 	function registerJsdocTask() {
 		
-		var spawn		= require('child_process').spawn,
-			fs			= require('fs'),
+		var fs			= require('fs'),
 			path		= require('path'),
 			done		= grunt.task.current.async(),
 			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
@@ -41,15 +40,20 @@ module.exports = function jsDocTask(grunt) {
 
 
 		/**
-		 * Build the jsdocs arguments
+		 * Build and execute a child process using the spawn function
 		 * @memberOf module:tasks/jsdoc-plugin#registerJsdocTask
+		 * @param {String} script the script to run
 		 * @param {Array} sources the list of sources files 
 		 * @param {String} destination the destination directory
 		 * @param {String} [config] the path to a jsdoc config file
-		 * @return {Array} the list of command arguments
+		 * @return {ChildProcess}  from the spawn 
 		 */
-		var buildCmdArgs = function(sources, destination, config){
-			var args = [];
+		var buildSpawned = function(script, sources, destination, config){
+			var isWin = process.platform === 'win32',
+				cmd = (isWin) ? 'cmd' : script,
+				args = (isWin) ? ['/c', script] : [],
+				spawn = require('child_process').spawn;
+			
 			if (config !== undefined) {
 				args.push('-c');
 				args.push(config);
@@ -60,8 +64,10 @@ module.exports = function jsDocTask(grunt) {
 				sources = [sources];
 			} 
 			args.push.apply(args, sources);
-
-			return args;
+			
+			grunt.log.debug("Running : "+ cmd + " " + args.join(' '));
+			
+			return spawn(cmd, args);
 		};
 
 		/**
@@ -87,6 +93,7 @@ module.exports = function jsDocTask(grunt) {
 			for(var i in paths){
 				grunt.log.debug('look up jsdoc at ' + paths[i]);
 				if(fs.existsSync(paths[i])){
+					//get the absolute path
 					return path.resolve(paths[i]);
 				}
 			}
@@ -128,11 +135,7 @@ module.exports = function jsDocTask(grunt) {
 			}
 
 			//execution of the jsdoc command
-			var cmdArgs = buildCmdArgs(srcs, dest, config),
-				child = spawn(jsDoc, cmdArgs);
-
-			grunt.log.debug("Running : "+ jsDoc + " " + cmdArgs.join(' '));
-
+			var child = buildSpawned(jsDoc, srcs, dest, config);
 			child.stdout.on('data', function (data) {
 				grunt.log.debug('jsdoc output : ' + data);
 			});
