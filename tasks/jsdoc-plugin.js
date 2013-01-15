@@ -10,6 +10,7 @@
 /**
  * Register the jsdoc task and helpers to Grunt
  * @constructor
+ * @type GruntTask
  * @param {Object} grunt - the grunt context
  */
 module.exports = function jsDocTask(grunt) {
@@ -28,8 +29,9 @@ module.exports = function jsDocTask(grunt) {
 	function registerJsdocTask() {
 		
 		var spawn		= require('child_process').spawn,
-		    fs			= require('fs'),
-		    done		= grunt.task.current.async(),
+			fs			= require('fs'),
+			path		= require('path'),
+			done		= grunt.task.current.async(),
 			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
 		    dest		= grunt.task.current.file.dest || 'doc',
 		    config		= grunt.task.current.data.config,
@@ -40,31 +42,33 @@ module.exports = function jsDocTask(grunt) {
 
 		/**
 		 * Build the jsdocs arguments
-		 * @memberOf module:tasks/jsdoc-plugin.registerJsdocTask
+		 * @memberOf module:tasks/jsdoc-plugin#registerJsdocTask
 		 * @param {Array} sources the list of sources files 
 		 * @param {String} destination the destination directory
 		 * @param {String} [config] the path to a jsdoc config file
 		 * @return {Array} the list of command arguments
 		 */
-		var buildCmdArgs = function(bin, sources, destination, config){
+		var buildCmdArgs = function(sources, destination, config){
 			var args = [];
-			//var cmd = '"' + bin  + '"';
 			if (config !== undefined) {
 				args.push('-c');
 				args.push(config);
 			}
 			args.push('-d');
-		   	args.push(destination);
-			args.concat(sources);
+			args.push(destination);
+			if(!util.isArray(sources)){
+				sources = [sources];
+			} 
+			args.push.apply(args, sources);
 
 			return args;
 		};
 
 		/**
 		 * Lookup for the jsdoc executable throught the different configurations
-		 * @todo find a more elegant way to do that... 
-		 * @memberOf module:tasks/jsdoc-plugin.registerJsdocTask
-		 * @returns {String} the command path relative to the project root 
+		 * @todo find a more elegant way to do that...
+		 * @memberOf module:tasks/jsdoc-plugin#registerJsdocTask
+		 * @returns {String} the command absolute path
 		 */
 		var jsDocLookup = function(){
 			
@@ -83,12 +87,12 @@ module.exports = function jsDocTask(grunt) {
 			for(var i in paths){
 				grunt.log.debug('look up jsdoc at ' + paths[i]);
 				if(fs.existsSync(paths[i])){
-					return paths[i];
+					return path.resolve(paths[i]);
 				}
 			}
 		};
 		jsDoc = jsDocLookup();
-		
+
 		//check if java is set
 		if(!javaHome){
 			grunt.log.error("JAVA_HOME is no set, but java is required by jsdoc to run.");
@@ -101,6 +105,8 @@ module.exports = function jsDocTask(grunt) {
 		if(jsDoc === undefined){
 			grunt.log.error('Unable to locate jsdoc');
 			grunt.fail.warn('Wrong installation/environnement', errorCode.generic);
+		} else {
+			grunt.log.debug("jsdoc found at : " + jsDoc);
 		}
 
 		//check if there is sources to generate the doc for
@@ -122,25 +128,27 @@ module.exports = function jsDocTask(grunt) {
 			}
 
 			//execution of the jsdoc command
-			var child = spawn('"'+jsDoc+"'", buildCmdArgs(srcs, dest, config));
-		   	child.stdout.on('data', function (data) {
-				  console.log('stdout: ' + data);
+			var cmdArgs = buildCmdArgs(srcs, dest, config),
+				child = spawn(jsDoc, cmdArgs);
+
+			grunt.log.debug("Running : "+ jsDoc + " " + cmdArgs.join(' '));
+
+			child.stdout.on('data', function (data) {
+				grunt.log.debug('jsdoc output : ' + data);
 			});
 			child.stderr.on('data', function (data) {
-	  			console.log('stderr: ' + data);
-			});	  
-			/*			exec(buildCmd(jsDoc, srcs, dest, config), {timeout: timeout},  function (error, stdout, stderr) {
-				grunt.log.debug('stdout: ' + stdout);
-				grunt.log.debug('stderr: ' + stderr);
-				if (error) {
-					grunt.log.error('jsdoc error: ' + error);
+				grunt.log.error('An error occurs in jsdoc process:\n' + data);
+				grunt.fail.warn('jsdoc failure', errorCode.task);
+			});	
+			child.on('exit', function(code){
+				if(code === 0){
+					grunt.log.write('Documentation generated to ' + path.resolve(dest));
+					done(true);
+				} else {
+					grunt.log.error('jsdoc terminated');
 					grunt.fail.warn('jsdoc failure', errorCode.task);
 				}
-				grunt.log.write('Documentation generated to : '+ dest);	
-				
-				done(true);
 			});
-*/
 		});
 	}
 
