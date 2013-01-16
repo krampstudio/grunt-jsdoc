@@ -9,13 +9,11 @@ module.exports = function(grunt) {
 			dest: 'doc'
 		}
 	},
-	test : {
+	nodeunit : {
 		files : ['test/*_test.js']
 	},
-	lint : {
-		files : ['grunt.js', 'tasks/*.js', 'test/*.js']
-	},
 	jshint : {
+		files : ['grunt.js', 'tasks/*.js', 'test/*.js'],
 		options: {
 			node : true,
 			smarttabs : true
@@ -23,10 +21,13 @@ module.exports = function(grunt) {
 	}
   });
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+
   // Load local tasks.
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', 'lint test');
+  grunt.registerTask('default', ['jshint', 'nodeunit']);
 
 };

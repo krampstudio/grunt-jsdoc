@@ -24,18 +24,23 @@
   "main": "grunt.js",
   "bin": "bin/grunt-jsdoc-plugin",
   "engines": {
-    "node": "*"
+    "node": ">= 0.8.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.3.x"
+    "grunt": "~0.4.x",
+    "grunt-contrib-nodeunit": "~0.1.1",
+    "grunt-contrib-jshint": "~0.1.0"
   },
   "dependencies": {
-    "jsdoc3" : "git://github.com/jsdoc3/jsdoc.git"
+    "jsdoc3": "git://github.com/jsdoc3/jsdoc.git"
   },
   "keywords": [
-    "gruntplugin", "grunt", "jsdoc", "jsdoc3"
+    "gruntplugin",
+    "grunt",
+    "jsdoc",
+    "jsdoc3"
   ]
 }
