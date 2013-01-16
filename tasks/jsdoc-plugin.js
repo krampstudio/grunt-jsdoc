@@ -27,17 +27,16 @@ module.exports = function jsDocTask(grunt) {
      * @memberOf module:tasks/jsdoc-plugin
      */
 	function registerJsdocTask() {
-		
 		var fs			= require('fs'),
 			path		= require('path'),
+			options		= grunt.task.current.options(),
 			done		= grunt.task.current.async(),
-			srcs		= grunt.file.expandFiles(grunt.task.current.file.src),
-		    dest		= grunt.task.current.file.dest || 'doc',
-		    config		= grunt.task.current.data.config,
+			srcs		= grunt.task.current.filesSrc,
+		    dest		= grunt.task.current.files[0].dest || 'doc',
+		    config		= options.config,
 			javaHome	= process.env.JAVA_HOME,
-			timeout		= 60000,
+			timeout		= 60000,	//todo implement and move in options
 			jsDoc;
-
 
 		/**
 		 * Build and execute a child process using the spawn function

@@ -1,5 +1,5 @@
 {
-  "name": "grunt-jsdoc-plugin",
+  "name": "grunt-contrib-jsdoc",
   "description": "Integrates jsdoc3 generation into your Grunt build",
   "version": "0.1.4",
   "homepage": "https://github.com/krampstudio/grunt-jsdoc-plugin",

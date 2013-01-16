@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 	jsdoc : {
-		dist : {
+		dist: {
 			src: ['tasks/*.js', 'test/*_test.js'],
 			dest: 'doc'
 		}
