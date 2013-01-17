@@ -1,25 +1,25 @@
 # grunt-jsdoc-plugin
 
-This plugin enables you to integrate generation of comment based documentation into your Grunt build.
+This plugin enables you to integrate the generation of comments based documentation into your Grunt build.
 
 
 ## Install
 
-You need [grunt >= 0.4] as well as [node] and [npm] installed and running on your system.
+You need [grunt >= 0.4][grunt] as well as [node] and [npm] installed and running on your system.
 
 You also need `java` installed and a valid `JAVA_HOME` environment variable set.
 
-Install this grunt plugin next to your project's [Gruntfile.js gruntfile][getting_started] with: 
+Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with: 
 
 ```bash
-npm install grunt-contrib-jsdoc`
+npm install grunt-contrib-jsdoc
 ```
 
 ## Documentation
 
 ### Configuration
 
-Configure the plugin to your project's [grunt.js gruntfile][getting_started]:
+Configure the plugin to your project's [Gruntfile.js][getting_started].
 
 First, add the `jsdoc` entry to the options of the `initConfig` method :
 
@@ -73,6 +73,11 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
 
 
  * _0.1.0_ First release, includes basic support of [jsdoc3]
+   * _0.1.1_ Fix [bug #2](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/2)
+   * _0.1.2_ Fix [bug #4](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/4) 
+   * _0.1.3_ Fix [bug #7](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/7), Add [feature #8](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/8)
+   * _0.1.4_ Use `child_process.spawn` instead of `exec` to run the command
+
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
@@ -81,8 +86,8 @@ Copyright (c) 2012 Bertrand Chevrier
 Licensed under the MIT license.
 
 
-[grunt]: https://github.com/cowboy/grunt
+[grunt]: https://gruntjs.com
 [node]: http://nodejs.org
 [npm]: http://npmjs.org
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 [usejsdoc]: http://usejsdoc.org
