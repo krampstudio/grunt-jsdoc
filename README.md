@@ -5,14 +5,14 @@ This plugin enables you to integrate generation of comment based documentation i
 
 ## Install
 
-You need [grunt] as well as [node] and [npm] installed and running on your system.
+You need [grunt >= 0.4] as well as [node] and [npm] installed and running on your system.
 
 You also need `java` installed and a valid `JAVA_HOME` environment variable set.
 
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: 
+Install this grunt plugin next to your project's [Gruntfile.js gruntfile][getting_started] with: 
 
 ```bash
-npm install grunt-jsdoc-plugin`
+npm install grunt-contrib-jsdoc`
 ```
 
 ## Documentation
@@ -43,7 +43,7 @@ The only supported options are
 Then, load the plugin 
 
 ```javascript
-grunt.loadNpmTasks('grunt-jsdoc-plugin');
+grunt.loadNpmTasks('grunt-contrib-jsdoc');
 ```
 
 ### Documentation
@@ -62,7 +62,7 @@ $> grunt jsdoc
 or integrate it to your build sequence : 
 
 ```javascript
-grunt.registerTask('default', 'lint test jsdoc');
+grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 ```
 
 ## Contributing
@@ -73,10 +73,6 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
 
 
  * _0.1.0_ First release, includes basic support of [jsdoc3]
-   * _0.1.1_ Fix [bug #2](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/2)
-   * _0.1.2_ Fix [bug #4](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/4) 
-   * _0.1.3_ Fix [bug #7](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/7), Add [feature #8](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/8)
-   * _0.1.4_ Use `child_process.spawn` instead of `exec` to run the command
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
