@@ -77,7 +77,8 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.1.2_ Fix [bug #4](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/4) 
    * _0.1.3_ Fix [bug #7](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/7), Add [feature #8](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/8)
    * _0.1.4_ Use `child_process.spawn` instead of `exec` to run the command
-
+ * _0.2.0_ Migrate to grunt 0.4
+   * _0.2.1_ Fix [bug #10](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/10)
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
