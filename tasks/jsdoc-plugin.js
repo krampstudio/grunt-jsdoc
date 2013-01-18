@@ -78,7 +78,7 @@ module.exports = function jsDocTask(grunt) {
 		var jsDocLookup = function(){
 			
 			var base = 'node_modules/jsdoc/jsdoc',
-				paths = [ base, 'node_modules/grunt-jsdoc-plugin/' + base ],
+				paths = [ base, 'node_modules/grunt-contrib-jsdoc/' + base ],
 				nodePath = process.env.NODE_PATH || '',
 				_ = grunt.util._;
 
