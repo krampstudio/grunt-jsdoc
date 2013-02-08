@@ -101,7 +101,7 @@ module.exports = function jsDocTask(grunt) {
 
 		//check if java is set
 		if(!javaHome){
-			grunt.log.error("JAVA_HOME is no set, but java is required by jsdoc to run.");
+			grunt.log.error("JAVA_HOME is not set, but java is required by jsdoc to run.");
 			grunt.fail.warn('Wrong installation/environnement', errorCode.generic);
 		} else {
 			grunt.log.debug("JAVA_HOME : " + javaHome);
