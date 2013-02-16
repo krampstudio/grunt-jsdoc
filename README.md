@@ -16,8 +16,15 @@ You also need `java` installed and a valid `JAVA_HOME` environment variable set.
 Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with: 
 
 ```bash
-npm install grunt-contrib-jsdoc
+npm install grunt-jsdoc
 ```
+
+If you use the previous version of Grunt (0.3), you can install it with:
+
+```bash
+npm install grunt-jsdoc-plugin
+```
+
 
 ## Documentation
 
@@ -84,6 +91,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
  * _0.2.0_ Migrate to grunt 0.4
    * _0.2.1_ Fix [bug #10](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/10)
    * _0.2.2_ Fix [bug #11](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/11)
+   * _0.2.3_ Fix [bug #14](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/14) and [bug #15](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/15)
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
