@@ -21,7 +21,7 @@
       "url": "https://github.com/krampstudio/grunt-jsdoc-plugin/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "grunt.js",
+  "main": "Gruntfile.js",
   "bin": "bin/grunt-contrib-jsdoc",
   "engines": {
     "node": ">= 0.8.0"
