@@ -37,6 +37,9 @@
   "dependencies": {
     "jsdoc3": "git+https://github.com/jsdoc3/jsdoc.git#v3.1.1"
   },
+  "peerDependencies" : {
+    "grunt" : "0.4.x"
+  },
   "keywords": [
     "gruntplugin",
     "grunt",
