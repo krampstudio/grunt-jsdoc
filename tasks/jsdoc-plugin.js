@@ -43,7 +43,7 @@ module.exports = function jsDocTask(grunt) {
 
 		/**
 		 * Build and execute a child process using the spawn function
-		 * @memberOf module:tasks/jsdoc-plugin#registerJsdocTask
+		 * @memberOf module:tasks/jsdoc-plugin
 		 * @param {String} script the script to run
 		 * @param {Array} sources the list of sources files 
 		 * @param {Object} options the list of JSDoc options
@@ -78,7 +78,7 @@ module.exports = function jsDocTask(grunt) {
 		/**
 		 * Lookup for the jsdoc executable throught the different configurations
 		 * @todo find a more elegant way to do that...
-		 * @memberOf module:tasks/jsdoc-plugin#registerJsdocTask
+		 * @memberOf module:tasks/jsdoc-plugin
 		 * @returns {String} the command absolute path
 		 */
 		var jsDocLookup = function(){
