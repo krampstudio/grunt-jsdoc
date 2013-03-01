@@ -39,17 +39,25 @@ grunt.initConfig({
     jsdoc : {
         dist : {
             src: ['src/*.js', 'test/*.js'], 
-            dest: 'doc'
+            options{
+                destination: 'doc'
+            }
         }
     }
 });
 ```
 
-The only supported options are 
+The supported options are 
 
- * `src` : an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
- * `dest`: the directory where the documentation will be generated (it will be created if needed).
- * `config` : (optional) a path to a jsdoc config file (refer the [usejsdoc] documentation below for more information).
+ * `src` : (required) an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
+ * `dest` : (deprecated) to support the previous way to set up destination folder
+ * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some boreder line cases)
+ * `options` : options used by jsdoc 
+   * `destination: (required) the folder where the doc is generated
+   * `congif` : (optionnal) path to a config file
+   * `template` : (optionnal)path or name to a different template
+   * `private` : (optionnal) include the private functions to the doc (true by default).
+   * ... (refer the [usejsdocCli] documentation for all the available options).
 
 Then, load the plugin 
 
@@ -92,6 +100,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.2.1_ Fix [bug #10](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/10)
    * _0.2.2_ Fix [bug #11](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/11)
    * _0.2.3_ Fix [bug #14](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/14) and [bug #15](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/15)
+   * _0.2.4_ Fix [
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
@@ -105,3 +114,4 @@ Licensed under the MIT license.
 [npm]: http://npmjs.org
 [getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
 [usejsdoc]: http://usejsdoc.org
+[usejsdocCli]: http://usejsdoc.org/about-commandline.html
