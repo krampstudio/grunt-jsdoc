@@ -29,7 +29,7 @@ module.exports = function jsDocTask(grunt) {
 	function registerJsdocTask() {
 		var fs			= require('fs'),
 			path		= require('path'),
-			options		= grunt.task.current.options(),
+			options		= grunt.task.current.options({'private': true}),
 			done		= grunt.task.current.async(),
 			srcs		= grunt.task.current.filesSrc,
 			javaHome	= process.env.JAVA_HOME,
