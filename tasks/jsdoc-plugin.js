@@ -32,33 +32,39 @@ module.exports = function jsDocTask(grunt) {
 			options		= grunt.task.current.options(),
 			done		= grunt.task.current.async(),
 			srcs		= grunt.task.current.filesSrc,
-		    dest		= grunt.task.current.files[0].dest || 'doc',
-		    config		= options.config,
 			javaHome	= process.env.JAVA_HOME,
 			timeout		= 60000,	//todo implement and move in options
 			jsDoc;
+
+		if (!options.destination) {
+			// Support for old syntax where destination was provided through 'dest' key
+			options.destination = grunt.task.current.files[0].dest || 'doc';
+		}
 
 		/**
 		 * Build and execute a child process using the spawn function
 		 * @memberOf module:tasks/jsdoc-plugin#registerJsdocTask
 		 * @param {String} script the script to run
 		 * @param {Array} sources the list of sources files 
-		 * @param {String} destination the destination directory
-		 * @param {String} [config] the path to a jsdoc config file
-		 * @return {ChildProcess}  from the spawn 
+		 * @param {Object} options the list of JSDoc options
+		 * @return {ChildProcess}  from the spawn
 		 */
-		var buildSpawned = function(script, sources, destination, config){
+		var buildSpawned = function(script, sources, options){
 			var isWin = process.platform === 'win32',
 				cmd = (isWin) ? 'cmd' : script,
 				args = (isWin) ? ['/c', script] : [],
 				spawn = require('child_process').spawn;
 			
-			if (config !== undefined) {
-				args.push('-c');
-				args.push(config);
+			// Compute JSDoc options
+			for (var optionName in options) {
+				grunt.log.debug("Reading option: " + optionName);
+				args.push('--' + optionName);
+				if (options.hasOwnProperty(optionName) && typeof(options[optionName]) === 'string') {
+					grunt.log.debug("                > " + options[optionName]);
+					args.push(options[optionName]);
+				}
 			}
-			args.push('-d');
-			args.push(destination);
+
 			if(!util.isArray(sources)){
 				sources = [sources];
 			} 
@@ -122,19 +128,19 @@ module.exports = function jsDocTask(grunt) {
 		}
 
 		//check if jsdoc config file path is provided and does exist
-		if (config !== undefined && !fs.existsSync(config)){
+		if (options.config && !fs.existsSync(options.config)){
 			grunt.log.error('jsdoc config file path does not exist');
 			grunt.fail.warn('Wrong configuration', errorCode.generic);
 		}
 
-		fs.exists(dest, function(exists){
+		fs.exists(options.destination, function(exists){
 			//if the destination don't exists, we create it
 			if(!exists){
-				grunt.file.mkdir(dest);
+				grunt.file.mkdir(options.destination);
 			}
 
 			//execution of the jsdoc command
-			var child = buildSpawned(jsDoc, srcs, dest, config);
+			var child = buildSpawned(jsDoc, srcs, options);
 			child.stdout.on('data', function (data) {
 				grunt.log.debug('jsdoc output : ' + data);
 			});
@@ -144,7 +150,7 @@ module.exports = function jsDocTask(grunt) {
 			});	
 			child.on('exit', function(code){
 				if(code === 0){
-					grunt.log.write('Documentation generated to ' + path.resolve(dest));
+					grunt.log.write('Documentation generated to ' + path.resolve(options.destination));
 					done(true);
 				} else {
 					grunt.log.error('jsdoc terminated');
