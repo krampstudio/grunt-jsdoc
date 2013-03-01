@@ -6,7 +6,9 @@ module.exports = function(grunt) {
 	jsdoc : {
 		dist: {
 			src: ['tasks/*.js', 'test/*_test.js'],
-			dest: 'doc'
+			options: {
+				destination: 'doc'
+			}
 		}
 	},
 	nodeunit : {
