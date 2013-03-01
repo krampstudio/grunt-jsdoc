@@ -27,13 +27,15 @@ module.exports = function jsDocTask(grunt) {
      * @memberOf module:tasks/jsdoc-plugin
      */
 	function registerJsdocTask() {
-		var fs			= require('fs'),
-			path		= require('path'),
-			options		= grunt.task.current.options({'private': true}),
-			done		= grunt.task.current.async(),
-			srcs		= grunt.task.current.filesSrc,
-			javaHome	= process.env.JAVA_HOME,
-			timeout		= 60000,	//todo implement and move in options
+		var fs				= require('fs'),
+			path			= require('path'),
+			options			= grunt.task.current.options({'private': true}),
+			done			= grunt.task.current.async(),
+			srcs			= grunt.task.current.filesSrc,
+			javaHome		= process.env.JAVA_HOME,
+			jsDocPath		= grunt.task.current.data.jsdoc,
+			jsDocNpmPath	= 'node_modules/jsdoc/jsdoc',  
+			timeout			= 60000,	//todo implement and move in options
 			jsDoc;
 
 		if (!options.destination) {
@@ -44,9 +46,9 @@ module.exports = function jsDocTask(grunt) {
 		/**
 		 * Build and execute a child process using the spawn function
 		 * @memberOf module:tasks/jsdoc-plugin
-		 * @param {String} script the script to run
-		 * @param {Array} sources the list of sources files 
-		 * @param {Object} options the list of JSDoc options
+		 * @param {String} script - the script to run
+		 * @param {Array} sources - the list of sources files 
+		 * @param {Object} options - the list of JSDoc options
 		 * @return {ChildProcess}  from the spawn
 		 */
 		var buildSpawned = function(script, sources, options){
@@ -79,14 +81,21 @@ module.exports = function jsDocTask(grunt) {
 		 * Lookup for the jsdoc executable throught the different configurations
 		 * @todo find a more elegant way to do that...
 		 * @memberOf module:tasks/jsdoc-plugin
+		 * @param {String} base - the base path of jsdoc to look up in the different directories
+		 * @param {String} [path] - a defined path to the jsdoc bin, in case of a non standard location
 		 * @returns {String} the command absolute path
 		 */
-		var jsDocLookup = function(){
+		var jsDocLookup = function(base, extPath){
 			
-			var base = 'node_modules/jsdoc/jsdoc',
-				paths = [ base, 'node_modules/grunt-jsdoc/' + base ],
+			var paths = [],
 				nodePath = process.env.NODE_PATH || '',
 				_ = grunt.util._;
+
+			if(extPath && typeof extPath === 'string'){
+				paths.push(extPath);
+			}
+			paths.push(base);
+			paths.push('node_modules/grunt-jsdoc/' + base);
 
 			_.map(nodePath.split(':'), function(p){
 				if(!/\/$/.test(p)){
@@ -103,7 +112,7 @@ module.exports = function jsDocTask(grunt) {
 				}
 			}
 		};
-		jsDoc = jsDocLookup();
+		jsDoc = jsDocLookup(jsDocNpmPath, jsDocPath);
 
 		//check if java is set
 		if(!javaHome){
