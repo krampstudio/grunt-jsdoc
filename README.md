@@ -53,11 +53,11 @@ The supported options are
  * `dest` : (deprecated) to support the previous way to set up destination folder
  * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some boreder line cases)
  * `options` : options used by jsdoc 
-   * `destination: (required) the folder where the doc is generated
+   * `destination`: (required) the folder where the doc is generated
    * `congif` : (optionnal) path to a config file
    * `template` : (optionnal)path or name to a different template
-   * `private` : (optionnal) include the private functions to the doc (true by default).
-   * ... (refer the [usejsdocCli] documentation for all the available options).
+   * `private` : (optionnal) include the private functions to the doc (`true` by default).
+   * ... refer the [usejsdocCli] documentation for all the available options.
 
 Then, load the plugin 
 
@@ -100,7 +100,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.2.1_ Fix [bug #10](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/10)
    * _0.2.2_ Fix [bug #11](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/11)
    * _0.2.3_ Fix [bug #14](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/14) and [bug #15](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/15)
-   * _0.2.4_ Fix [
+   * _0.2.4_ Enables jsdoc options [issue #19](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/19), enable to add jsdoc path [issue #13](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/13) and add peerDependencies
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
