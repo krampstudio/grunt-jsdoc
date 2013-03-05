@@ -16,7 +16,7 @@ You also need `java` installed and a valid `JAVA_HOME` environment variable set.
 Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with: 
 
 ```bash
-npm install grunt-jsdoc
+npm install grunt-jsdoc --save-dev
 ```
 
 If you use the previous version of Grunt (0.3), you can install it with:
@@ -39,7 +39,7 @@ grunt.initConfig({
     jsdoc : {
         dist : {
             src: ['src/*.js', 'test/*.js'], 
-            options{
+            options: {
                 destination: 'doc'
             }
         }
@@ -62,7 +62,7 @@ The supported options are
 Then, load the plugin 
 
 ```javascript
-grunt.loadNpmTasks('grunt-contrib-jsdoc');
+grunt.loadNpmTasks('grunt-jsdoc');
 ```
 
 ### Documentation
