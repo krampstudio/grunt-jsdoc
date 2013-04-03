@@ -66,5 +66,26 @@ exports.JsdocTest = {
 		test.ok(taskArgs.length > 0 && taskArgs[0] === 'grunt', 'the task must declare the grunt context as 1st parameter');
 		
 		test.done();
+	}, 
+
+	/**
+	 * Check the task is loaded and complies with the grunt requirements.
+	 * @memberOf JsdocTest
+	 * @param {Object} test - the node unit test context
+	 */
+	'taskTest' : function(test){
+		'use strict';	
+
+		var task  = this.jsdocTask(require('grunt'))
+	
+		var util = require('util');
+
+		for(var i in task){
+			console.log(i);
+			console.log(util.inspect(task[i]));
+		}
+		
+		
+		test.done();
 	}
 };

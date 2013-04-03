@@ -35,7 +35,7 @@
     "grunt-contrib-jshint": "~0.1.1"
   },
   "dependencies": {
-    "jsdoc3": "git+https://github.com/jsdoc3/jsdoc.git"
+    "jsdoc3": "git+https://github.com/jsdoc3/jsdoc.git#cfff8dd035ad376892139192c03718ce2dcc20f0"
   },
   "peerDependencies" : {
     "grunt" : "0.4.x"
