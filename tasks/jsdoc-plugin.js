@@ -3,7 +3,7 @@
  * @copyright Bertrand Chevrier 2012
  * @author Bertrand Chevrier <chevrier.bertrand@gmail.com>
  * @license MIT
- * 
+ *
  * @module tasks/jsdoc-plugin
  */
 
@@ -17,15 +17,15 @@ module.exports = function jsDocTask(grunt) {
 	'use strict';
 
 	var util = require('util'),
-	    errorCode = {
+			errorCode = {
 			generic : 1,
-			task	: 3	
+			task	: 3
 		};
 
 	/**
-     * Register the jsdoc task to Grunt
-     * @memberOf module:tasks/jsdoc-plugin
-     */
+	 * Register the jsdoc task to Grunt
+	 * @memberOf module:tasks/jsdoc-plugin
+	 */
 	function registerJsdocTask() {
 		var fs				= require('fs'),
 			path			= require('path'),
@@ -34,8 +34,9 @@ module.exports = function jsDocTask(grunt) {
 			srcs			= grunt.task.current.filesSrc,
 			javaHome		= process.env.JAVA_HOME,
 			jsDocPath		= grunt.task.current.data.jsdoc,
-			jsDocNpmPath	= 'node_modules/jsdoc/jsdoc',  
+			jsDocNpmPath	= 'node_modules/jsdoc/jsdoc',
 			timeout			= 60000,	//todo implement and move in options
+			cliFlags = ['recurse', 'private', 'lenient', 'explain', 'help', 'version', 'test', 'verbose', 'nocolor'],
 			jsDoc;
 
 		if (!options.destination) {
@@ -47,7 +48,7 @@ module.exports = function jsDocTask(grunt) {
 		 * Build and execute a child process using the spawn function
 		 * @memberOf module:tasks/jsdoc-plugin
 		 * @param {String} script - the script to run
-		 * @param {Array} sources - the list of sources files 
+		 * @param {Array} sources - the list of sources files
 		 * @param {Object} options - the list of JSDoc options
 		 * @return {ChildProcess}  from the spawn
 		 */
@@ -56,24 +57,28 @@ module.exports = function jsDocTask(grunt) {
 				cmd = (isWin) ? 'cmd' : script,
 				args = (isWin) ? ['/c', script] : [],
 				spawn = require('child_process').spawn;
-			
+
 			// Compute JSDoc options
 			for (var optionName in options) {
+				var option = options[optionName];
 				grunt.log.debug("Reading option: " + optionName);
+				if(grunt.util._.contains(cliFlags, optionName) && !option){
+					continue;
+				}
 				args.push('--' + optionName);
-				if (options.hasOwnProperty(optionName) && typeof(options[optionName]) === 'string') {
-					grunt.log.debug("                > " + options[optionName]);
-					args.push(options[optionName]);
+				if (options.hasOwnProperty(optionName) && typeof(option) === 'string') {
+					grunt.log.debug("                > " + option);
+					args.push(option);
 				}
 			}
 
 			if(!util.isArray(sources)){
 				sources = [sources];
-			} 
+			}
 			args.push.apply(args, sources);
-			
+
 			grunt.log.debug("Running : "+ cmd + " " + args.join(' '));
-			
+
 			return spawn(cmd, args);
 		};
 
@@ -86,7 +91,7 @@ module.exports = function jsDocTask(grunt) {
 		 * @returns {String} the command absolute path
 		 */
 		var jsDocLookup = function(base, extPath){
-			
+
 			var paths = [],
 				nodePath = process.env.NODE_PATH || '',
 				_ = grunt.util._;
@@ -103,7 +108,7 @@ module.exports = function jsDocTask(grunt) {
 				}
 				paths.push(p + base);
 			});
-		
+
 			for(var i in paths){
 				grunt.log.debug('look up jsdoc at ' + paths[i]);
 				if(fs.existsSync(paths[i])){
@@ -156,7 +161,7 @@ module.exports = function jsDocTask(grunt) {
 			child.stderr.on('data', function (data) {
 				grunt.log.error('An error occurs in jsdoc process:\n' + data);
 				grunt.fail.warn('jsdoc failure', errorCode.task);
-			});	
+			});
 			child.on('exit', function(code){
 				if(code === 0){
 					grunt.log.write('Documentation generated to ' + path.resolve(options.destination));
