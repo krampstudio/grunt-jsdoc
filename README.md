@@ -51,10 +51,10 @@ The supported options are
 
  * `src` : (required) an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
  * `dest` : (deprecated) to support the previous way to set up destination folder
- * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some boreder line cases)
+ * `jsdoc`: (optionnal) the path to the jsdoc bin (needed only for some boreder line cases)
  * `options` : options used by jsdoc 
    * `destination`: (required) the folder where the doc is generated
-   * `congif` : (optionnal) path to a config file
+   * `configuration` : (optionnal) path to a config file
    * `template` : (optionnal)path or name to a different template
    * `private` : (optionnal) include the private functions to the doc (`true` by default).
    * ... refer the [usejsdocCli] documentation for all the available options.
