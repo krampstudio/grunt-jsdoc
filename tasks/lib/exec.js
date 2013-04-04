@@ -78,7 +78,7 @@ module.exports = {
 
 		for(var i in paths){
 			grunt.log.debug('look up ' + base + ' at ' + paths[i]);
-			if(fs.existsSync(paths[i])){
+			if(fs.existsSync(paths[i]) && fs.statSync(paths[i]).isFile() === true ){
 				//get the absolute path
 				return path.resolve(paths[i]);
 			}
