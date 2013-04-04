@@ -13,7 +13,10 @@ module.exports = {
 	 * @return {ChildProcess} from the spawn
 	 */
 	buildSpawned : function(grunt, script, sources, options){
-		var isWin = process.platform === 'win32',
+		'use strict';
+	
+		var util = require('util'),
+			isWin = process.platform === 'win32',
 			cmd = (isWin) ? 'cmd' : script,
 			args = (isWin) ? ['/c', script] : [],
 			spawn = require('child_process').spawn;
@@ -46,11 +49,14 @@ module.exports = {
 	 * @param {String|Array} extPath - additionnal pathes to lookup
 	 * @returns {String} the first matching resolved path
 	 */
-	lookup = function(grunt, base, extPath){
+	lookup : function(grunt, base, extPath){
+		'use strict';
 
-		var paths = [],
-			nodePath = process.env.NODE_PATH || '',
-			_ = grunt.util._;
+		var paths		= [],
+			fs			= require('fs'),
+			path		= require('path'),
+			nodePath	= process.env.NODE_PATH || '',
+			_			= grunt.util._;
 
 		//check first the base path into the cwd
 		paths.push(base);
@@ -60,8 +66,9 @@ module.exports = {
 		} else if(typeof extPaths === 'string'){
 			extPath = [extPath];
 		}
-
-		_.map(extPath.concat(nodePath.split(':')), function(p){
+		
+		grunt.log.debug('nodePath' + nodePath);
+		_.map(extPath.concat(nodePath.split(path.delimiter)), function(p){
 			if(!/\/$/.test(p)){
 				p += '/';
 			}
@@ -79,4 +86,4 @@ module.exports = {
 
 		return;
 	}
-}
+};

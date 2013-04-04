@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
 	jsdoc : {
 		dist: {
-			src: ['tasks/*.js', 'test/*_test.js'],
+			src: ['tasks/**.js', 'tasks/lib/*.js'],
 			options: {
 				destination: 'doc'
 			}
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 		files : ['test/*_test.js']
 	},
 	jshint : {
-		files : ['grunt.js', 'tasks/*.js', 'test/*.js'],
+		files : ['Gruntfile.js', 'tasks/*.js', 'tasks/lib/*.js', 'test/*.js'],
 		options: {
 			node : true,
 			smarttabs : true

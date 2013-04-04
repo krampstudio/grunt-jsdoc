@@ -17,9 +17,9 @@ var grunt = require('grunt');
 /**
  * This function enables you to extract 
  * the declared arguments from a function.
- * @param {function} fn - the function to extract the arguments for
- * @returns {array} the list of arguments
- * @throw {error} in case of wrong argument given
+ * @param {Function} fn - the function to extract the arguments for
+ * @returns {Array} the list of arguments
+ * @throw {Error} in case of wrong argument given
  */
 var extractArgs = function(fn){
 	'use strict';
@@ -69,22 +69,20 @@ exports.JsdocTest = {
 	}, 
 
 	/**
-	 * Check the task is loaded and complies with the grunt requirements.
+	 * Do some check on the exec library
 	 * @memberOf JsdocTest
 	 * @param {Object} test - the node unit test context
 	 */
-	'taskTest' : function(test){
+	'execCheck' : function(test){
 		'use strict';	
 
-		var task  = this.jsdocTask(require('grunt'))
-	
-		var util = require('util');
+		var exec  = require('../tasks/lib/exec');
 
-		for(var i in task){
-			console.log(i);
-			console.log(util.inspect(task[i]));
-		}
-		
+		test.notStrictEqual(exec, undefined, 'the exec lib should be required');
+		test.equal(typeof exec, 'object', 'exec is an object');	
+
+		test.equal(typeof exec.buildSpawned, 'function', 'exec must have a buildSpawned method');	
+		test.equal(typeof exec.lookup, 'function', 'exec must have a lookup method');	
 		
 		test.done();
 	}

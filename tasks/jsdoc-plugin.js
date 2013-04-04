@@ -9,8 +9,8 @@
 
 /**
  * Register the jsdoc task and helpers to Grunt
- * @constructor
  * @type GruntTask
+ * @constructor
  * @param {Object} grunt - the grunt context
  */
 module.exports = function jsDocTask(grunt) {
@@ -24,12 +24,11 @@ module.exports = function jsDocTask(grunt) {
 
 	/**
 	 * Register the jsdoc task to Grunt
-	 * @memberOf module:tasks/jsdoc-plugin
 	 */
 	function registerJsdocTask() {
 		var fs				= require('fs'),
 			path			= require('path'),
-			jsDocExec		= require('./lib/exec'),
+			exec			= require('./lib/exec'),
 			options			= grunt.task.current.options({'private': true}),
 			done			= grunt.task.current.async(),
 			srcs			= grunt.task.current.filesSrc,
@@ -53,12 +52,17 @@ module.exports = function jsDocTask(grunt) {
 		}
 
 		// Compute JSDoc flags from options
-		options = grunt.util._.filter(options, function(flag){
-			return flag && grunt.util._.contains(cliFlags, optionName);
-		});
+		for(var optionName in options){
+			var option = options[optionName];
+			if(!grunt.util._.contains(cliFlags, optionName) || !options){
+				delete options[optionName];
+			}
+		}
+
+		grunt.log.debug(util.inspect(options));
 
 		//lookup jsdoc
-		jsDoc = jsDocExec.lookup(grunt, jsDocNpmPath, ['node_modules/grunt-jsdoc/', jsDocPath]);
+		jsDoc = exec.lookup(grunt, jsDocNpmPath, ['node_modules/grunt-jsdoc/', jsDocPath]);
 
 		//check if java is set
 		if(!javaHome){
@@ -87,15 +91,16 @@ module.exports = function jsDocTask(grunt) {
 			grunt.log.error('jsdoc config file path does not exist');
 			grunt.fail.warn('Wrong configuration', errorCode.generic);
 		}
-
+		
 		fs.exists(options.destination, function(exists){
 			//if the destination don't exists, we create it
 			if(!exists){
 				grunt.file.mkdir(options.destination);
+				grunt.log.debug('create destination : ' + options.destination);
 			}
 
 			//execution of the jsdoc command
-			var child = jsDocExec.buildSpawned(grunt, jsDoc, srcs, options);
+			var child = exec.buildSpawned(grunt, jsDoc, srcs, options);
 			child.stdout.on('data', function (data) {
 				grunt.log.debug('jsdoc output : ' + data);
 			});
