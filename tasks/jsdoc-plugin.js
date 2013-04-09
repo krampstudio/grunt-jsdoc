@@ -54,7 +54,7 @@ module.exports = function jsDocTask(grunt) {
 		// Compute JSDoc flags from options
 		for(var optionName in options){
 			var option = options[optionName];
-			if(!grunt.util._.contains(cliFlags, optionName) || !options){
+			if(!grunt.util._.contains(cliFlags, optionName) || !option){
 				delete options[optionName];
 			}
 		}
