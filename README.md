@@ -89,7 +89,8 @@ grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc-plugin/issues). Do some unit tests as far as possible.
 
 ## Release History
- * _0.3.0_ Partial rewrite, Fix [bug #29](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/30) and minor typos fixs 
+ * _0.3.0_ Partial rewrite, Fix [bug #29](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/30) and minor typos fixs
+   * _0.3.1_ Fix [bug #29](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/29)
  * _0.2.0_ Migrate to grunt 0.4
    * _0.2.1_ Fix [bug #10](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/10)
    * _0.2.2_ Fix [bug #11](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/11)
