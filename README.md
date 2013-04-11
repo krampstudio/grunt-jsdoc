@@ -54,7 +54,7 @@ The supported options are
  * `jsdoc`: (optionnal) the path to the jsdoc bin (needed only for some boreder line cases)
  * `options` : options used by jsdoc 
    * `destination`: (required) the folder where the doc is generated
-   * `configuration` : (optionnal) path to a config file
+   * `configure` : (optionnal) path to a config file
    * `template` : (optionnal) path or name to a different template
    * `private` : (optionnal) include the private functions to the doc (`true` by default).
    * ... refer the [usejsdocCli] documentation for all the available options.
