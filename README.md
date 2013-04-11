@@ -4,7 +4,7 @@ This plugin enables you to integrate the generation of comments based documentat
 
 ## To your attention
 
-The grunt team ask me to change the plugin name into NPM. The `grunt-contrib` namespace is now reserved to the tasks developped by the Grunt Team.
+The grunt team ask me to change the plugin name into NPM. The `grunt-contrib` namespace is now reserved to the tasks developed by the Grunt Team.
 I'll in a first time, deprecate the module in NPM and then update the name to `grunt-jsdoc`. You'll have to upgrade your `package.json` once the plugin will be removed from NPM.
 
 ## Install
@@ -51,12 +51,12 @@ The supported options are
 
  * `src` : (required) an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
  * `dest` : (deprecated) to support the previous way to set up destination folder
- * `jsdoc`: (optionnal) the path to the jsdoc bin (needed only for some boreder line cases)
+ * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some border line cases)
  * `options` : options used by jsdoc 
    * `destination`: (required) the folder where the doc is generated
-   * `configure` : (optionnal) path to a config file
-   * `template` : (optionnal) path or name to a different template
-   * `private` : (optionnal) include the private functions to the doc (`true` by default).
+   * `configure` : (optional) path to a config file
+   * `template` : (optional) path or name to a different template
+   * `private` : (optional) include the private functions to the doc (`true` by default).
    * ... refer the [usejsdocCli] documentation for all the available options.
 
 Then, load the plugin 
