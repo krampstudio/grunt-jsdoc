@@ -61,8 +61,14 @@ module.exports = function jsDocTask(grunt) {
 
 		grunt.log.debug(util.inspect(options));
 
-		//lookup jsdoc
-		jsDoc = exec.lookup(grunt, jsDocNpmPath, ['node_modules/grunt-jsdoc/', jsDocPath]);
+
+		if(jsDocPath && grunt.file.exists(jsDocPath) && grunt.file.isFile(jsDocPath)){
+			//use the given jsdoc path if set
+			jsDoc = jsDocPath;
+		} else {
+			//lookup jsdoc
+			jsDoc = exec.lookup(grunt, jsDocNpmPath, ['node_modules/grunt-jsdoc/']);
+		}
 
 		//check if java is set
 		if(!javaHome){
