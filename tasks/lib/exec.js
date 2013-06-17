@@ -37,6 +37,22 @@ module.exports = {
 		}
 		args.push.apply(args, sources);
 
+		// handle paths that contain spaces
+		if (require("os").platform() == "win32") {
+			// Windows: quote paths that have spaces
+			args = args.map(function(item){ 
+				if (item.indexOf(' ')>=0) {
+				    return '"' + item + '"';
+                } else {
+                    return item;
+                }
+			});
+		} else {
+            // Unix: escape spaces in paths
+            args = args.map(function(item){
+                return item.replace(' ', '\\ ');
+            });
+        }
 		grunt.log.debug("Running : "+ cmd + " " + args.join(' '));
 
 		return spawn(cmd, args);
