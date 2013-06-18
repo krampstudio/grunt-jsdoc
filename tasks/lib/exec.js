@@ -55,7 +55,9 @@ module.exports = {
         }
 		grunt.log.debug("Running : "+ cmd + " " + args.join(' '));
 
-		return spawn(cmd, args);
+		return spawn(cmd, args, {
+            windowsVerbatimArguments: isWin // documentation PR is pending: https://github.com/joyent/node/pull/4259
+        });
 	},
 
 	/**
