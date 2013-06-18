@@ -38,7 +38,7 @@ module.exports = {
 		args.push.apply(args, sources);
 
 		// handle paths that contain spaces
-		if (require("os").platform() == "win32") {
+		if (isWin) {
 			// Windows: quote paths that have spaces
 			args = args.map(function(item){ 
 				if (item.indexOf(' ')>=0) {
