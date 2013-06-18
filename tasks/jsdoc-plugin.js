@@ -70,6 +70,9 @@ module.exports = function jsDocTask(grunt) {
 			jsDoc = exec.lookup(grunt, jsDocNpmPath, ['node_modules/grunt-jsdoc/']);
 		}
 
+        // convert jsdoc path to relative path
+        jsDoc = path.relative('.', jsDoc);//, path.resolve('.'));
+
 		//check if java is set
 		if(!javaHome){
 			grunt.log.error("JAVA_HOME is not set. Jsdoc requires Java to run.");

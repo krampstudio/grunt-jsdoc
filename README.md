@@ -93,6 +93,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.3.1_ Fix [bug #29](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/29)
    * _0.3.2_ Fix [bug #32](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/32)
    * _0.3.3_ Fix [bug #34](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/34) and [bug #36](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/34)
+   * _0.3.4_ Fix [bug #37](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/37)
  * _0.2.0_ Migrate to grunt 0.4
    * _0.2.1_ Fix [bug #10](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/10)
    * _0.2.2_ Fix [bug #11](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/11)
