@@ -3,7 +3,8 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-	jsdoc : {
+	clean : ['doc'],
+    jsdoc : {
 		dist: {
 			src: ['tasks/**.js', 'tasks/lib/*.js'],
 			options: {
@@ -23,6 +24,7 @@ module.exports = function(grunt) {
 	}
   });
 
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
@@ -32,4 +34,5 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit']);
 
+  grunt.registerTask('test', ['clean', 'jsdoc', 'nodeunit']);
 };

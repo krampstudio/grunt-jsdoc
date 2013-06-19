@@ -34,12 +34,13 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt nodeunit"
+    "test": "grunt test"
   },
   "devDependencies": {
     "grunt": "~0.4.x",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-jshint": "~0.1.1"
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-nodeunit": "latest",
+    "grunt-contrib-jshint": "latest"
   },
   "dependencies": {
     "jsdoc3": "git+https://github.com/jsdoc3/jsdoc.git#cfff8dd035ad376892139192c03718ce2dcc20f0"
