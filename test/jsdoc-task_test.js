@@ -8,6 +8,8 @@
  */
 
 var fs = require('fs');
+var destination = 'doc';
+var expectedFiles = ['index.html', 'jsdoc-plugin.html', 'jsdoc-plugin.js.html'];
 
 /**
  * NodeUnit group of test that check the result once the task has been launched
@@ -19,19 +21,6 @@ var fs = require('fs');
 exports.JsdocTaskTest = {
 	
 	/**
-	 * Set up context parameters
-	 * @memberOf JsdocTaskTest
-	 * @param {Function} done - to call once the setup is done.
-	 */
-	setUp: function(done) {
-		'use strict';
-
-		this.destination = 'doc';
-        this.expectedFiles = ['index.html', 'jsdoc-plugin.html', 'jsdoc-plugin.js.html'];
-		done();
-	},
-
-	/**
 	 * Check the destination directory exists
 	 * @memberOf JsdociTaskTest
 	 * @param {Object} test - the node unit test context
@@ -41,7 +30,7 @@ exports.JsdocTaskTest = {
 
         test.expect(1);
 
-        fs.exists(this.destination, function(result){
+        fs.exists(destination, function(result){
             test.ok(result === true, 'The documentation destination should exists');
             test.done();
         });
@@ -54,11 +43,11 @@ exports.JsdocTaskTest = {
 	 */
     'content check' : function(test){
         
-        var base = this.destination + '/';
+        var base = destination + '/';
         
-        test.expect(this.expectedFiles.length);
+        test.expect(expectedFiles.length);
         
-        this.expectedFiles.forEach(function(file){
+        expectedFiles.forEach(function(file){
             test.ok(fs.existsSync(base + file), 'The file ' + base + file + ' should exists');
         });
         test.done();

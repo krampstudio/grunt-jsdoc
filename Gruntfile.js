@@ -10,10 +10,19 @@ module.exports = function(grunt) {
 			options: {
 				destination: 'doc'
 			}
-		}
+		},
+        tmpl : {
+            src: ['tasks/**.js', 'tasks/lib/*.js'],
+            options:{
+				destination: 'doc',
+                template: "node_modules/ink-docstrap/template",
+                configure: "node_modules/ink-docstrap/template/jsdoc.conf.json"
+			}
+        }
 	},
 	nodeunit : {
-		files : ['test/*_test.js']
+        unit : ['test/jsdoc-plugin_test.js'],
+        int : ['test/jsdoc-task_test.js']
 	},
 	jshint : {
 		files : ['Gruntfile.js', 'tasks/*.js', 'tasks/lib/*.js', 'test/*.js'],
@@ -34,5 +43,9 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit']);
 
-  grunt.registerTask('test', ['clean', 'jsdoc', 'nodeunit']);
+  grunt.registerTask('test-dist', ['clean', 'jsdoc:dist', 'nodeunit:int']);
+  grunt.registerTask('test-tmpl', ['clean', 'jsdoc:tmpl', 'nodeunit:int']);
+  
+  grunt.registerTask('test', ['nodeunit:unit', 'test-dist', 'test-tmpl']);
+  
 };
