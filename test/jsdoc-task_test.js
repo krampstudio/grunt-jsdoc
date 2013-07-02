@@ -7,6 +7,7 @@
  * @module test/jsdoc-task_test
  */
 
+var fs = require('fs');
 
 /**
  * NodeUnit group of test that check the result once the task has been launched
@@ -26,7 +27,7 @@ exports.JsdocTaskTest = {
 		'use strict';
 
 		this.destination = 'doc';
-        this.expectedFiles = ['index.html', 'task.html'];
+        this.expectedFiles = ['index.html', 'jsdoc-plugin.html', 'jsdoc-plugin.js.html'];
 		done();
 	},
 
@@ -38,8 +39,6 @@ exports.JsdocTaskTest = {
 	'destination check' : function(test){
 		'use strict';	
 
-        var fs = require('fs');
-        
         test.expect(1);
 
         fs.exists(this.destination, function(result){
@@ -47,5 +46,22 @@ exports.JsdocTaskTest = {
             test.done();
         });
 	}, 
+    
+    /**
+     * Check the documentation content
+	 * @memberOf JsdociTaskTest
+	 * @param {Object} test - the node unit test context
+	 */
+    'content check' : function(test){
+        
+        var base = this.destination + '/';
+        
+        test.expect(this.expectedFiles.length);
+        
+        this.expectedFiles.forEach(function(file){
+            test.ok(fs.existsSync(base + file), 'The file ' + base + file + ' should exists');
+        });
+        test.done();
+    }
 
 };
