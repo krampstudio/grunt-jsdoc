@@ -43,8 +43,8 @@
     "grunt-contrib-jshint": "latest"
   },
   "dependencies": {
-    "jsdoc3": "git+https://github.com/jsdoc3/jsdoc.git#v3.2.0",
-    "docstrap" : "git+https://github.com/terryweiss/docstrap"
+    "jsdoc": "git+https://github.com/jsdoc3/jsdoc.git#v3.2.0",
+    "ink-docstrap" : "git+https://github.com/terryweiss/docstrap"
   },
   "peerDependencies": {
     "grunt": "0.4.x"
