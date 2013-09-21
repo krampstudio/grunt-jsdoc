@@ -27,7 +27,7 @@ npm install grunt-jsdoc-plugin
 
 
 ## Documentation
-
+ 
 ### Configuration
 
 Configure the plugin to your project's [Gruntfile.js][getting_started].
@@ -64,11 +64,15 @@ Then, load the plugin
 ```javascript
 grunt.loadNpmTasks('grunt-jsdoc');
 ```
-
-### Documentation
+ 
+### Code Documentation
 
 The current version supports only [jsdoc3] documentation style. The sources configured 
 must contains valid [jsdoc3] tags. Consult the [usejsdoc] website for the details.
+ 
+### Templates
+
+The plugin includes [docstrap](https://github.com/terryweiss/docstrap), as well as the default template provided by jsdoc3. You can have a look to the [Gruntfile.js](Gruntfile.js) for the configuration.
 
 ### Build
 
@@ -83,26 +87,27 @@ or integrate it to your build sequence :
 ```javascript
 grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 ```
-
+ 
 ## Contributing
 
 Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc-plugin/issues). Do some unit tests as far as possible.
-
+ 
 ## Release History
- * _0.4.0_ Update to jsdoc 3.2.0 stable, Fix [bug #37](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/37), add integration tests
- * _0.3.0_ Partial rewrite, Fix [bug #29](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/30) and minor typos fixs
-   * _0.3.1_ Fix [bug #29](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/29)
-   * _0.3.2_ Fix [bug #32](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/32)
-   * _0.3.3_ Fix [bug #34](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/34) and [bug #36](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/34)
+ * _0.4.0_ Update to jsdoc 3.2.0 stable, Fix [#37](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/37), add integration tests
+   * _0.4.1_ Fix [#53](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/53) and [#54](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/54) 
+ * _0.3.0_ Partial rewrite, Fix [#29](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/30) and minor typos fixs
+   * _0.3.1_ Fix [#29](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/29)
+   * _0.3.2_ Fix [#32](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/32)
+   * _0.3.3_ Fix [#34](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/34) and [#36](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/34)
  * _0.2.0_ Migrate to grunt 0.4
-   * _0.2.1_ Fix [bug #10](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/10)
-   * _0.2.2_ Fix [bug #11](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/11)
-   * _0.2.3_ Fix [bug #14](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/14) and [bug #15](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/15)
-   * _0.2.4_ Fix Jsdoc 3 dependency to 3.1.1 tag, enables jsdoc options [issue #19](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/19), enable to add jsdoc path [issue #13](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/13) and add peerDependencies
+   * _0.2.1_ Fix [#10](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/10)
+   * _0.2.2_ Fix [#11](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/11)
+   * _0.2.3_ Fix [#14](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/14) and [#15](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/15)
+   * _0.2.4_ Fix Jsdoc 3 dependency to 3.1.1 tag, enables jsdoc options [#19](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/19), enable to add jsdoc path [#13](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/13) and add peerDependencies
  * _0.1.0_ First release, includes basic support of [jsdoc3]
-   * _0.1.1_ Fix [bug #2](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/2)
-   * _0.1.2_ Fix [bug #4](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/4) 
-   * _0.1.3_ Fix [bug #7](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/7), Add [feature #8](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/8)
+   * _0.1.1_ Fix [#2](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/2)
+   * _0.1.2_ Fix [#4](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/4) 
+   * _0.1.3_ Fix [#7](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/7), Add [feature #8](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/8)
    * _0.1.4_ Use `child_process.spawn` instead of `exec` to run the command
  
 
