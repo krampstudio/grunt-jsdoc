@@ -32,7 +32,6 @@ module.exports = function jsDocTask(grunt) {
 			options			= grunt.task.current.options({'private': true}),
 			done			= grunt.task.current.async(),
 			srcs			= grunt.task.current.filesSrc,
-			javaHome		= process.env.JAVA_HOME,
 			jsDocPath		= grunt.task.current.data.jsdoc,
 			jsDocNpmPath	= 'node_modules/jsdoc/jsdoc',
 			timeout			= 60000,	//todo implement and move in options
@@ -61,7 +60,6 @@ module.exports = function jsDocTask(grunt) {
 
 		grunt.log.debug(util.inspect(options));
 
-
 		if(jsDocPath && grunt.file.exists(jsDocPath) && grunt.file.isFile(jsDocPath)){
 			//use the given jsdoc path if set
 			jsDoc = jsDocPath;
@@ -72,13 +70,6 @@ module.exports = function jsDocTask(grunt) {
 
         // convert jsdoc path to relative path
         jsDoc = path.relative('.', jsDoc);//, path.resolve('.'));
-
-		//check if java is set
-		if(!javaHome){
-			grunt.log.error("JAVA_HOME is not set. Jsdoc requires Java to run.");
-		} else {
-			grunt.log.debug("JAVA_HOME : " + javaHome);
-		}
 
 		//check if jsdoc npm module is installedz
 		if(jsDoc === undefined){
