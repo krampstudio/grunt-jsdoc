@@ -41,7 +41,7 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['jshint', 'test']);
 
   grunt.registerTask('test-dist', ['clean', 'jsdoc:dist', 'nodeunit:int']);
   grunt.registerTask('test-tmpl', ['clean', 'jsdoc:tmpl', 'nodeunit:int']);
