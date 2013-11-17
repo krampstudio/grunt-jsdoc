@@ -35,7 +35,7 @@ module.exports = function jsDocTask(grunt) {
 			jsDocPath		= grunt.task.current.data.jsdoc,
 			jsDocNpmPath	= 'node_modules/jsdoc/jsdoc',
 			timeout			= 60000,	//todo implement and move in options
-			cliFlags = ['recurse', 'private', 'lenient', 'explain', 'help', 'version', 'test', 'verbose', 'nocolor', 'template', 'configure', 'destination', 'encoding', 'tutorials'],
+			cliFlags = ['recurse', 'private', 'lenient', 'explain', 'help', 'version', 'test', 'verbose', 'nocolor', 'template', 'configure', 'destination', 'encoding', 'tutorials', 'match', 'query'],
 			jsDoc;
 
 		//validate options
