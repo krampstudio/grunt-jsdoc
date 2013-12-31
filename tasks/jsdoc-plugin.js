@@ -33,7 +33,7 @@ module.exports = function jsDocTask(grunt) {
 			done			= grunt.task.current.async(),
 			srcs			= grunt.task.current.filesSrc,
 			jsDocPath		= grunt.task.current.data.jsdoc,
-			jsDocNpmPath	= 'node_modules/jsdoc/jsdoc',
+			jsDocNpmPath	= 'node_modules/jsdoc/jsdoc.js',
 			timeout			= 60000,	//todo implement and move in options
 			cliFlags = ['recurse', 'private', 'lenient', 'explain', 'help', 'version', 'test', 'verbose', 'nocolor', 'template', 'configure', 'destination', 'encoding', 'tutorials', 'match', 'query'],
 			jsDoc;
