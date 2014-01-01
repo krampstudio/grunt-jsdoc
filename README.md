@@ -96,6 +96,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
  * _0.4.0_ Update to jsdoc 3.2.0 stable, Fix [#37](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/37), add integration tests
    * _0.4.1_ Fix [#53](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/53) and [#54](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/54) 
    * _0.4.2_ Fix [#57](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/57) 
+   * _0.4.3_ Grunt 0.4.2 compliance, upgrade to jsdoc 3.2.2 and undeprecate the `dest` option ([#60](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/60), [#63](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/63) and [#66](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/66))
  * _0.3.0_ Partial rewrite, Fix [#29](https://github.com/krampstudio/grunt-jsdoc-plugin/pull/30) and minor typos fixs
    * _0.3.1_ Fix [#29](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/29)
    * _0.3.2_ Fix [#32](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/32)
