@@ -42,7 +42,7 @@ module.exports = {
 			// Windows: quote paths that have spaces
 			args = args.map(function(item){ 
 				if (item.indexOf(' ')>=0) {
-				    return '"' + item + '"';
+                    return '"' + item + '"';
                 } else {
                     return item;
                 }
@@ -73,8 +73,8 @@ module.exports = {
 		var paths		= [],
 			fs			= require('fs'),
 			path		= require('path'),
-			nodePath	= process.env.NODE_PATH || '',
-			_			= grunt.util._;
+            _           = require('loadash'),
+			nodePath	= process.env.NODE_PATH || '';
 
 		//check first the base path into the cwd
 		paths.push(base);
