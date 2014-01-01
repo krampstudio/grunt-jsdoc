@@ -73,7 +73,7 @@ module.exports = {
 		var paths		= [],
 			fs			= require('fs'),
 			path		= require('path'),
-            _           = require('loadash'),
+            _           = require('lodash'),
 			nodePath	= process.env.NODE_PATH || '';
 
 		//check first the base path into the cwd
