@@ -3,15 +3,15 @@
 This plugin enables you to integrate the generation of comments based documentation into your Grunt build.
 
 ## To your attention
-
+ 
 The grunt team ask me to change the plugin name into NPM. The `grunt-contrib` namespace is now reserved to the tasks developed by the Grunt Team.
 I'll in a first time, deprecate the module in NPM and then update the name to `grunt-jsdoc`. You'll have to upgrade your `package.json` once the plugin will be removed from NPM.
 
 ## Install
-
+ 
 You need [grunt >= 0.4][grunt] as well as [node] and [npm] installed and running on your system.
 
-You also need `java` installed and a valid `JAVA_HOME` environment variable set.
+You also need `java` installed and available in your PATH.
 
 Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with: 
 
@@ -87,12 +87,13 @@ or integrate it to your build sequence :
 ```javascript
 grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 ```
- 
+  
 ## Contributing
 
-Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc-plugin/issues). Do some unit tests as far as possible.
+Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc-plugin/issues). Do some unit/integration tests as far as possible.
  
 ## Release History
+ * _0.5.0_ Move to NPM dependencies instead of git, jsdoc 3.2.2 (Fix [#65](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/65))
  * _0.4.0_ Update to jsdoc 3.2.0 stable, Fix [#37](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/37), add integration tests
    * _0.4.1_ Fix [#53](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/53) and [#54](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/54) 
    * _0.4.2_ Fix [#57](https://github.com/krampstudio/grunt-jsdoc-plugin/issues/57) 
