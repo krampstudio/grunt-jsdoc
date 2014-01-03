@@ -1,8 +1,8 @@
 {
   "name": "grunt-jsdoc",
   "description": "Integrates jsdoc3 generation into your Grunt build",
-  "version": "0.5.0",
-  "homepage": "https://github.com/krampstudio/grunt-jsdoc-plugin",
+  "version": "0.5.1",
+  "homepage": "https://github.com/krampstudio/grunt-jsdoc",
   "author": {
     "name": "Bertrand Chevrier",
     "email": "chevrier.bertrand@gmail.com",
@@ -17,15 +17,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/krampstudio/grunt-jsdoc-plugin.git"
+    "url": "git://github.com/krampstudio/grunt-jsdoc.git"
   },
   "bugs": {
-    "url": "https://github.com/krampstudio/grunt-jsdoc-plugin/issues"
+    "url": "https://github.com/krampstudio/grunt-jsdoc/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/krampstudio/grunt-jsdoc-plugin/blob/master/LICENSE-MIT"
+      "url": "https://github.com/krampstudio/grunt-jsdoc/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",
