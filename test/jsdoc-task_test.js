@@ -4,11 +4,10 @@
  * @author Bertrand Chevrier <chevrier.bertrand@gmail.com>
  * @license MIT
  * 
- * @module test/jsdoc-task_test
+ * @module test/jsdoc-task
  */
 
 var fs = require('fs');
-var destination = 'doc';
 var expectedFiles = ['index.html', 'jsdoc-plugin.html', 'jsdoc-plugin.js.html'];
 
 /**
@@ -18,7 +17,7 @@ var expectedFiles = ['index.html', 'jsdoc-plugin.html', 'jsdoc-plugin.js.html'];
  * 
  * @class JsdocTaskTest
  */
-exports.JsdocTaskTest = {
+var JsdocTaskTest = {
 	
 	/**
 	 * Check the destination directory exists
@@ -26,11 +25,11 @@ exports.JsdocTaskTest = {
 	 * @param {Object} test - the node unit test context
 	 */
 	'destination check' : function(test){
-		'use strict';	
-
+		'use strict';
+        
         test.expect(1);
 
-        fs.exists(destination, function(result){
+        fs.exists(this.destination, function(result){
             test.ok(result === true, 'The documentation destination should exists');
             test.done();
         });
@@ -43,7 +42,7 @@ exports.JsdocTaskTest = {
 	 */
     'content check' : function(test){
         
-        var base = destination + '/';
+        var base = this.destination + '/';
         
         test.expect(expectedFiles.length);
         
@@ -54,3 +53,5 @@ exports.JsdocTaskTest = {
     }
 
 };
+
+module.exports = exports = JsdocTaskTest;
