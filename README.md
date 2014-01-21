@@ -1,4 +1,4 @@
-# grunt-jsdoc [![Build Status](https://travis-ci.org/krampstudio/grunt-jsdoc.png)](https://travis-ci.org/krampstudio/grunt-jsdoc) [![NPM version](https://badge.fury.io/js/grunt-jsdoc.png)](http://badge.fury.io/js/grunt-jsdoc)
+# grunt-jsdoc [![Build Status](https://travis-ci.org/krampstudio/grunt-jsdoc.png)](https://travis-ci.org/krampstudio/grunt-jsdoc) [![NPM version](https://badge.fury.io/js/grunt-jsdoc.png)](http://badge.fury.io/js/grunt-jsdoc) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 [![Npm Downloads](https://nodei.co/npm/grunt-jsdoc.png?downloads=true&stars=true)](https://nodei.co/npm/grunt-jsdoc.png?downloads=true&stars=true)
 
