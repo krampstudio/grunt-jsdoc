@@ -1,5 +1,7 @@
 # grunt-jsdoc [![Build Status](https://travis-ci.org/krampstudio/grunt-jsdoc.png)](https://travis-ci.org/krampstudio/grunt-jsdoc) [![NPM version](https://badge.fury.io/js/grunt-jsdoc.png)](http://badge.fury.io/js/grunt-jsdoc)
 
+[![Npm Downloads](https://nodei.co/npm/grunt-jsdoc.png?downloads=true&stars=true)](https://nodei.co/npm/grunt-jsdoc.png?downloads=true&stars=true)
+
 This plugin enables you to integrate the generation of comments based documentation into your Grunt build.
 
 ## To your attention
