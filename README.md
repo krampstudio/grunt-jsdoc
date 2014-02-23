@@ -24,7 +24,7 @@ npm install grunt-jsdoc --save-dev
 If you use the previous version of Grunt (0.3), you can install it with:
 
 ```bash
-npm install grunt-jsdoc
+npm install grunt-jsdoc-plugin
 ```
 
 
