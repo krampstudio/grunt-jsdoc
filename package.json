@@ -43,7 +43,6 @@
     "grunt-contrib-jshint": "latest"
   },
   "dependencies": {
-    "lodash": "~2.4.1",
     "jsdoc": "~3.2.2",
     "ink-docstrap": "~0.2.0-0"
   },
