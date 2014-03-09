@@ -26,7 +26,7 @@ module.exports = {
 			var option = options[optionName];
 			grunt.log.debug("Reading option: " + optionName);
 			args.push('--' + optionName);
-			if (options.hasOwnProperty(optionName) && typeof(option) === 'string') {
+			if (options.hasOwnProperty(optionName) && typeof option === 'string') {
 				grunt.log.debug("                > " + option);
 				args.push(option);
 			}
@@ -73,7 +73,6 @@ module.exports = {
 		var paths		= [],
 			fs			= require('fs'),
 			path		= require('path'),
-            _           = require('lodash'),
 			nodePath	= process.env.NODE_PATH || '';
 
 		//check first the base path into the cwd
@@ -81,12 +80,12 @@ module.exports = {
 
 		if(!extPath){
 			extPath = [];
-		} else if(typeof extPaths === 'string'){
+		} else if(typeof extPath === 'string'){
 			extPath = [extPath];
 		}
 		
 		grunt.log.debug('nodePath' + nodePath);
-		_.map(extPath.concat(nodePath.split(path.delimiter)), function(p){
+		extPath.concat(nodePath.split(path.delimiter)).forEach(function(p){
 			if(!/\/$/.test(p)){
 				p += '/';
 			}
