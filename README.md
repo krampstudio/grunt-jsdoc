@@ -97,6 +97,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
 ## Release History
  * _0.5.0_ Move to NPM dependencies instead of git, jsdoc 3.2.2 (Fix [#65](https://github.com/krampstudio/grunt-jsdoc/issues/65))
    * _0.5.1_ Update repo name to prevent confusion with previous version
+   * _0.5.2_ Upgrade to Grunt 0.4.3i (PR [#74](https://github.com/krampstudio/grunt-jsdoc/pull/74))
  * _0.4.0_ Update to jsdoc 3.2.0 stable, Fix [#37](https://github.com/krampstudio/grunt-jsdoc/issues/37), add integration tests
    * _0.4.1_ Fix [#53](https://github.com/krampstudio/grunt-jsdoc/issues/53) and [#54](https://github.com/krampstudio/grunt-jsdoc/issues/54) 
    * _0.4.2_ Fix [#57](https://github.com/krampstudio/grunt-jsdoc/issues/57) 
