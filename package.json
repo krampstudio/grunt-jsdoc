@@ -37,7 +37,7 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
+    "grunt": "~0.4.3",
     "grunt-contrib-clean": "latest",
     "grunt-contrib-nodeunit": "latest",
     "grunt-contrib-jshint": "latest"
@@ -47,7 +47,7 @@
     "ink-docstrap": "~0.3.0-0"
   },
   "peerDependencies": {
-    "grunt": "~0.4.3"
+    "grunt": "~0.4.0"
   },
   "keywords": [
     "gruntplugin",
