@@ -38,9 +38,9 @@
   },
   "devDependencies": {
     "grunt": "~0.4.3",
-    "grunt-contrib-clean": "latest",
-    "grunt-contrib-nodeunit": "latest",
-    "grunt-contrib-jshint": "latest"
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.0"
   },
   "dependencies": {
     "jsdoc": "~3.2.2",
