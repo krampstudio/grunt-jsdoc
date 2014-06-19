@@ -80,7 +80,7 @@ module.exports = function jsDocTask(grunt) {
 		}
 
 		//check if there is sources to generate the doc for
-		if(srcs.length === 0){
+		if(srcs.length === 0 && !options.configure){
 			grunt.log.error('No source files defined');
 			grunt.fail.warn('Wrong configuration', errorCode.generic);
 		}
