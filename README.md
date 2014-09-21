@@ -4,10 +4,9 @@
 
 This plugin enables you to integrate the generation of comments based documentation into your Grunt build.
 
-## To your attention
+## NPM package name change
  
-The grunt team ask me to change the plugin name into NPM. The `grunt-contrib` namespace is now reserved to the tasks developed by the Grunt Team.
-I'll in a first time, deprecate the module in NPM and then update the name to `grunt-jsdoc`. You'll have to upgrade your `package.json` once the plugin will be removed from NPM.
+To comply with convention, the package's name was changed from `grunt-contrib-jsdoc` to `grunt-jsdoc`. You'll have to upgrade your `package.json` if you're still using `grunt-contrib-jsdoc`.
 
 ## Install
  
