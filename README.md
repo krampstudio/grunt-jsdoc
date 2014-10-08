@@ -4,10 +4,9 @@
 
 This plugin enables you to integrate the generation of comments based documentation into your Grunt build.
 
-## To your attention
+## NPM package name change
  
-The grunt team ask me to change the plugin name into NPM. The `grunt-contrib` namespace is now reserved to the tasks developed by the Grunt Team.
-I'll in a first time, deprecate the module in NPM and then update the name to `grunt-jsdoc`. You'll have to upgrade your `package.json` once the plugin will be removed from NPM.
+To comply with convention, the package's name was changed from `grunt-contrib-jsdoc` to `grunt-jsdoc`. You'll have to upgrade your `package.json` if you're still using `grunt-contrib-jsdoc`.
 
 ## Install
  
@@ -21,12 +20,26 @@ Install this grunt plugin next to your project's [Gruntfile.js][getting_started]
 npm install grunt-jsdoc --save-dev
 ```
 
+### jsdoc3 3.3.0
+
+The jsdoc3 team is working on the 3.3.0 version that works on node.js and doesn't need Rhino (Java) anymore. This version is not yet stable (flagged as _alpha_). If you want this plugin to use this version, you can install the _beta_ tag of this grunt plugin (branch 0.6.x).
+
+```bash
+npm install grunt-jsdoc@beta --save-dev
+```
+> Feedback on the beta branch is more than welcomed!
+
+### Grunt <= 0.3.x
+
 If you use the previous version of Grunt (0.3), you can install it with:
 
 ```bash
 npm install grunt-jsdoc-plugin
 ```
 
+## Upstream issues
+
+*For documentation related issues, please ask the jsdoc3 people.* To be sure the issue comes from the Grunt plugin, you can check by running directly jsdoc3 command. Run the task with the `--debug` flag and the command to run is outputed.
 
 ## Documentation
  
@@ -74,7 +87,20 @@ must contains valid [jsdoc3] tags. Consult the [usejsdoc] website for the detail
  
 ### Templates
 
-The plugin includes [docstrap](https://github.com/terryweiss/docstrap), as well as the default template provided by jsdoc3. You can have a look to the [Gruntfile.js](Gruntfile.js) for the configuration.
+The plugin includes [docstrap](https://github.com/terryweiss/docstrap), as well as the default template provided by jsdoc3. To use docstrap, you can use the following configuration:
+
+```javascript
+jsdoc : {
+    dist : {
+        src: ['src/**/*.js', 'README.md'], 
+        options: {
+            destination: 'doc',
+            template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
+            configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
+        }
+    }
+}
+```
 
 ### Build
 
@@ -102,6 +128,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.5.4_ Fix peer deps issue
    * _0.5.5_ Update docstrap version
    * _0.5.6_ Fix dependencies version and bug [#87](https://github.com/krampstudio/grunt-jsdoc/issues/87)
+   * _0.5.7_ Update readme, docstrap version
  * _0.4.0_ Update to jsdoc 3.2.0 stable, Fix [#37](https://github.com/krampstudio/grunt-jsdoc/issues/37), add integration tests
    * _0.4.1_ Fix [#53](https://github.com/krampstudio/grunt-jsdoc/issues/53) and [#54](https://github.com/krampstudio/grunt-jsdoc/issues/54) 
    * _0.4.2_ Fix [#57](https://github.com/krampstudio/grunt-jsdoc/issues/57) 
