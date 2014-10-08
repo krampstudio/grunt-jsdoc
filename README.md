@@ -87,7 +87,20 @@ must contains valid [jsdoc3] tags. Consult the [usejsdoc] website for the detail
  
 ### Templates
 
-The plugin includes [docstrap](https://github.com/terryweiss/docstrap), as well as the default template provided by jsdoc3. You can have a look to the [Gruntfile.js](Gruntfile.js) for the configuration.
+The plugin includes [docstrap](https://github.com/terryweiss/docstrap), as well as the default template provided by jsdoc3. To use docstrap, you can use the following configuration:
+
+```javascript
+jsdoc : {
+    dist : {
+        src: ['src/**/*.js', 'README.md'], 
+        options: {
+            destination: 'doc',
+            template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
+            configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
+        }
+    }
+}
+```
 
 ### Build
 
