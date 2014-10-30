@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "jsdoc": "~3.2.2",
-    "ink-docstrap": "~0.4.12"
+    "ink-docstrap": "git+ssh://git@github.com:liors/docstrap.git"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
