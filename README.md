@@ -67,12 +67,12 @@ The supported options are
  * `src` : (required) an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
  * `dest` : (alias to `options.destination`) set up the destination folder, the grunt way
  * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some border line cases)
- * `options` : options used by jsdoc 
+ * `options` : full name command line options recognized by jsdoc, e.g.
    * `destination`: (required) the folder where the doc is generated
    * `configure` : (optional) path to a config file
    * `template` : (optional) path or name to a different template
-   * `private` : (optional) include the private functions to the doc (`true` by default).
-   * ... refer the [usejsdocCli] documentation for all the available options.
+   * `private` : (optional) include the private functions to the doc
+   * ... Refer to the [usejsdocCli] documentation for all the available options.
 
 Then, load the plugin 
 
