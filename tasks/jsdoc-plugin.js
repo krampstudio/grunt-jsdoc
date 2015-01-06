@@ -29,13 +29,14 @@ module.exports = function jsDocTask(grunt) {
 		var fs				= require('fs'),
 			path			= require('path'),
 			exec			= require('./lib/exec'),
-			options			= grunt.task.current.options({'private': true}),
+			options			= grunt.task.current.options(),
 			done			= grunt.task.current.async(),
 			srcs			= grunt.task.current.filesSrc,
 			jsDocPath		= grunt.task.current.data.jsdoc,
 			jsDocNpmPath	= 'node_modules/.bin/jsdoc',
 			timeout			= 60000,	//todo implement and move in options
-			cliFlags = ['recurse', 'private', 'lenient', 'explain', 'help', 'version', 'test', 'verbose', 'nocolor', 'template', 'configure', 'destination', 'encoding', 'tutorials', 'match', 'query'],
+			// Keep in sync with JSDoc's lib/jsdoc/opts/args.js
+			cliFlags = ['access', 'configure', 'destination', 'debug', 'encoding', 'help', 'match', 'nocolor', 'private', 'package', 'pedantic', 'query', 'recurse', 'readme', 'template', 'test', 'tutorials', 'version', 'verbose', 'explain'],
 			jsDoc;
 
 		//validate options
