@@ -35,11 +35,11 @@ module.exports = function jsDocTask(grunt) {
 			jsDocPath		= grunt.task.current.data.jsdoc,
 			jsDocNpmPath	= 'node_modules/.bin/jsdoc',
 			timeout			= 60000,	//todo implement and move in options
-			cliFlags = ['recurse', 'private', 'lenient', 'explain', 'help', 'version', 'test', 'verbose', 'nocolor', 'template', 'configure', 'destination', 'encoding', 'tutorials', 'match', 'query'],
+ 	        cliFlags        = ['access', 'configure', 'destination', 'debug', 'encoding', 'help', 'match', 'nocolor', 'private', 'package', 'pedantic', 'query', 'recurse', 'readme', 'template', 'test', 'tutorials', 'version', 'verbose', 'explain'],
 			jsDoc;
 
 		//validate options
-		
+
 		if (!options.destination) {
 			// Support for old syntax where destination was provided through 'dest' key
 			options.destination = grunt.task.current.files[0].dest || 'doc';
@@ -90,7 +90,7 @@ module.exports = function jsDocTask(grunt) {
 			grunt.log.error('jsdoc config file path does not exist');
 			grunt.fail.warn('Wrong configuration', errorCode.generic);
 		}
-		
+
 		fs.exists(options.destination, function(exists){
 			//if the destination don't exists, we create it
 			if(!exists){
