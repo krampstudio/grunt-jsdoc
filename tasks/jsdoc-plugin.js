@@ -100,17 +100,14 @@ module.exports = function jsDocTask(grunt) {
 
 			//execution of the jsdoc command
 			var child = exec.buildSpawned(grunt, jsDoc, srcs, options);
-			var wereErrors = false;
 
 			child.stdout.on('data', grunt.log.debug)
 			child.stderr.on('data', function(data) {
-				if (data.toString().lastIndexOf('ERROR:', 0) === 0)
-					wereErrors = true;
 				if (!options.ignoreWarnings)
 					grunt.log.error(data);
 			});
 			child.on('exit', function(code){
-				if(code === 0 && !wereErrors){
+				if(code === 0){
 					grunt.log.write('Documentation generated to ' + path.resolve(options.destination));
 					done(true);
 				} else {
