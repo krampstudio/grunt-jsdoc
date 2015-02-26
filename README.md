@@ -5,16 +5,16 @@
 This plugin enables you to integrate the generation of comments based documentation into your Grunt build.
 
 ## NPM package name change
- 
+
 To comply with convention, the package's name was changed from `grunt-contrib-jsdoc` to `grunt-jsdoc`. You'll have to upgrade your `package.json` if you're still using `grunt-contrib-jsdoc`.
 
 ## Install
- 
+
 You need [grunt >= 0.4][grunt] as well as [node] and [npm] installed and running on your system.
 
 You also need `java` installed and available in your PATH.
 
-Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with: 
+Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with:
 
 ```bash
 npm install grunt-jsdoc --save-dev
@@ -42,7 +42,7 @@ npm install grunt-jsdoc-plugin
 *For documentation related issues, please ask the jsdoc3 people.* To be sure the issue comes from the Grunt plugin, you can check by running directly jsdoc3 command. Run the task with the `--debug` flag and the command to run is outputed.
 
 ## Documentation
- 
+
 ### Configuration
 
 Configure the plugin to your project's [Gruntfile.js][getting_started].
@@ -53,7 +53,7 @@ First, add the `jsdoc` entry to the options of the `initConfig` method :
 grunt.initConfig({
     jsdoc : {
         dist : {
-            src: ['src/*.js', 'test/*.js'], 
+            src: ['src/*.js', 'test/*.js'],
             options: {
                 destination: 'doc'
             }
@@ -62,29 +62,29 @@ grunt.initConfig({
 });
 ```
 
-The supported options are 
+The supported options are
 
  * `src` : (required) an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
  * `dest` : (alias to `options.destination`) set up the destination folder, the grunt way
  * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some border line cases)
- * `options` : options used by jsdoc 
+ * `options` : options used by jsdoc
    * `destination`: (required) the folder where the doc is generated
    * `configure` : (optional) path to a config file
    * `template` : (optional) path or name to a different template
    * `private` : (optional) include the private functions to the doc (`true` by default).
    * ... refer the [usejsdocCli] documentation for all the available options.
 
-Then, load the plugin 
+Then, load the plugin
 
 ```javascript
 grunt.loadNpmTasks('grunt-jsdoc');
 ```
- 
+
 ### Code Documentation
 
-The current version supports only [jsdoc3] documentation style. The sources configured 
+The current version supports only [jsdoc3] documentation style. The sources configured
 must contains valid [jsdoc3] tags. Consult the [usejsdoc] website for the details.
- 
+
 ### Templates
 
 The plugin includes [docstrap](https://github.com/terryweiss/docstrap), as well as the default template provided by jsdoc3. To use docstrap, you can use the following configuration:
@@ -92,7 +92,7 @@ The plugin includes [docstrap](https://github.com/terryweiss/docstrap), as well 
 ```javascript
 jsdoc : {
     dist : {
-        src: ['src/**/*.js', 'README.md'], 
+        src: ['src/**/*.js', 'README.md'],
         options: {
             destination: 'doc',
             template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
@@ -110,17 +110,18 @@ To generate the documentation, you need to call the `jsdoc` task :
 $> grunt jsdoc
 ```
 
-or integrate it to your build sequence : 
+or integrate it to your build sequence :
 
 ```javascript
 grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 ```
-  
+
 ## Contributing
 
 Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc/issues). Do some unit/integration tests as far as possible.
- 
+
 ## Release History
+ * _0.6.x_ Beta version in parrallel that rely on jsdoc3.3 alpha and beta releases.
  * _0.5.0_ Move to NPM dependencies instead of git, jsdoc 3.2.2 (Fix [#65](https://github.com/krampstudio/grunt-jsdoc/issues/65))
    * _0.5.1_ Update repo name to prevent confusion with previous version
    * _0.5.2_ Upgrade to Grunt 0.4.3 (PR [#74](https://github.com/krampstudio/grunt-jsdoc/pull/74))
@@ -130,8 +131,8 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.5.6_ Fix dependencies version and bug [#87](https://github.com/krampstudio/grunt-jsdoc/issues/87)
    * _0.5.7_ Update readme, docstrap version
  * _0.4.0_ Update to jsdoc 3.2.0 stable, Fix [#37](https://github.com/krampstudio/grunt-jsdoc/issues/37), add integration tests
-   * _0.4.1_ Fix [#53](https://github.com/krampstudio/grunt-jsdoc/issues/53) and [#54](https://github.com/krampstudio/grunt-jsdoc/issues/54) 
-   * _0.4.2_ Fix [#57](https://github.com/krampstudio/grunt-jsdoc/issues/57) 
+   * _0.4.1_ Fix [#53](https://github.com/krampstudio/grunt-jsdoc/issues/53) and [#54](https://github.com/krampstudio/grunt-jsdoc/issues/54)
+   * _0.4.2_ Fix [#57](https://github.com/krampstudio/grunt-jsdoc/issues/57)
    * _0.4.3_ Grunt 0.4.2 compliance, upgrade to jsdoc 3.2.2 and undeprecate the `dest` option ([#60](https://github.com/krampstudio/grunt-jsdoc/issues/60), [#63](https://github.com/krampstudio/grunt-jsdoc/issues/63) and [#66](https://github.com/krampstudio/grunt-jsdoc/issues/66))
  * _0.3.0_ Partial rewrite, Fix [#29](https://github.com/krampstudio/grunt-jsdoc/pull/30) and minor typos fixs
    * _0.3.1_ Fix [#29](https://github.com/krampstudio/grunt-jsdoc/issues/29)
@@ -144,15 +145,15 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.2.4_ Fix Jsdoc 3 dependency to 3.1.1 tag, enables jsdoc options [#19](https://github.com/krampstudio/grunt-jsdoc/issues/19), enable to add jsdoc path [#13](https://github.com/krampstudio/grunt-jsdoc/issues/13) and add peerDependencies
  * _0.1.0_ First release, includes basic support of [jsdoc3]
    * _0.1.1_ Fix [#2](https://github.com/krampstudio/grunt-jsdoc/issues/2)
-   * _0.1.2_ Fix [#4](https://github.com/krampstudio/grunt-jsdoc/issues/4) 
+   * _0.1.2_ Fix [#4](https://github.com/krampstudio/grunt-jsdoc/issues/4)
    * _0.1.3_ Fix [#7](https://github.com/krampstudio/grunt-jsdoc/pull/7), Add [feature #8](https://github.com/krampstudio/grunt-jsdoc/pull/8)
    * _0.1.4_ Use `child_process.spawn` instead of `exec` to run the command
- 
+
 
 [jsdoc3]: https://github.com/jsdoc3/jsdoc
 
 ## License
-Copyright (c) 2012 Bertrand Chevrier  
+Copyright (c) 2012 Bertrand Chevrier
 Licensed under the MIT license.
 
 
