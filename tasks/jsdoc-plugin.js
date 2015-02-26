@@ -10,7 +10,6 @@
 var fs			= require('fs');
 var	path		= require('path');
 var	exec		= require('./lib/exec');
-var resolve     = require('resolve');
 
 /**
  * Register the jsdoc task and helpers to Grunt
