@@ -7,6 +7,11 @@
  * @module tasks/jsdoc-plugin
  */
 
+var fs			= require('fs');
+var	path		= require('path');
+var	exec		= require('./lib/exec');
+var resolve     = require('resolve');
+
 /**
  * Register the jsdoc task and helpers to Grunt
  * @type GruntTask
@@ -26,14 +31,10 @@ module.exports = function jsDocTask(grunt) {
 	 * Register the jsdoc task to Grunt
 	 */
 	function registerJsdocTask() {
-		var fs				= require('fs'),
-			path			= require('path'),
-			exec			= require('./lib/exec'),
-			options			= grunt.task.current.options({'private': true}),
+        var options			= grunt.task.current.options({'private': true}),
 			done			= grunt.task.current.async(),
 			srcs			= grunt.task.current.filesSrc,
 			jsDocPath		= grunt.task.current.data.jsdoc,
-			jsDocNpmPath	= 'node_modules/.bin/jsdoc',
 			timeout			= 60000,	//todo implement and move in options
  	        cliFlags        = ['access', 'configure', 'destination', 'debug', 'encoding', 'help', 'match', 'nocolor', 'private', 'package', 'pedantic', 'query', 'recurse', 'readme', 'template', 'test', 'tutorials', 'version', 'verbose', 'explain'],
 			jsDoc;
@@ -65,19 +66,19 @@ module.exports = function jsDocTask(grunt) {
 			jsDoc = jsDocPath;
 		} else {
 			//lookup jsdoc
-			jsDoc = exec.lookup(grunt, jsDocNpmPath, ['node_modules/grunt-jsdoc/']);
+			jsDoc = exec.lookup(grunt);
 		}
-
-        // convert jsdoc path to relative path
-        jsDoc = path.relative('.', jsDoc);//, path.resolve('.'));
 
 		//check if jsdoc npm module is installed
 		if(jsDoc === undefined){
 			grunt.log.error('Unable to locate jsdoc');
 			grunt.fail.warn('Wrong installation/environnement', errorCode.generic);
-		} else {
-			grunt.log.debug("jsdoc found at : " + jsDoc);
 		}
+
+        // convert jsdoc path to relative path
+        jsDoc = path.relative('.', jsDoc);
+
+        grunt.log.debug("Using jsdoc from : " + jsDoc);
 
 		//check if there is sources to generate the doc for
 		if(srcs.length === 0 && !options.configure){
