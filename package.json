@@ -43,7 +43,7 @@
     "grunt-contrib-nodeunit": "~0.4.0"
   },
   "dependencies": {
-    "jsdoc": "~3.2.2",
+    "jsdoc": "git+ssh://git@github.com:yaarams/jsdoc.git",
     "ink-docstrap": "git+ssh://git@github.com:liors/docstrap.git"
   },
   "peerDependencies": {
