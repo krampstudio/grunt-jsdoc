@@ -1,3 +1,8 @@
+'use strict';
+
+var fs = require('fs');
+var path = require('path');
+
 /**
  * Provides utility methods to execute a command
  * @module exec
@@ -13,8 +18,7 @@ module.exports = {
 	 * @return {ChildProcess} from the spawn
 	 */
 	buildSpawned : function(grunt, script, sources, options){
-		'use strict';
-	
+
 		var util = require('util'),
 			isWin = process.platform === 'win32',
 			cmd = (isWin) ? 'cmd' : script,
@@ -40,7 +44,7 @@ module.exports = {
 		// handle paths that contain spaces
 		if (isWin) {
 			// Windows: quote paths that have spaces
-			args = args.map(function(item){ 
+			args = args.map(function(item){
 				if (item.indexOf(' ')>=0) {
                     return '"' + item + '"';
                 } else {
@@ -63,41 +67,30 @@ module.exports = {
 	/**
 	 * Lookup file or path into node modules
 	 * @param {Object} grunt - the grunt context
-	 * @param {String} base - the file or path to lookup 
-	 * @param {String|Array} extPath - additionnal pathes to lookup
-	 * @returns {String} the first matching resolved path
+	 * @returns {String} the first matching resolved path or nothing if not found
 	 */
-	lookup : function(grunt, base, extPath){
-		'use strict';
-
-		var paths		= [],
-			fs			= require('fs'),
-			path		= require('path'),
-			nodePath	= process.env.NODE_PATH || '';
+	lookup : function(grunt){
+         var i, binPath, paths;
+		 var nodePath = process.env.NODE_PATH || '';
 
 		//check first the base path into the cwd
-		paths.push(base);
+		paths = [
+            __dirname + '/../../node_modules/.bin/jsdoc',
+            __dirname + '/../../node_modules/jsdoc/jsdoc.js'
+        ];
 
-		if(!extPath){
-			extPath = [];
-		} else if(typeof extPath === 'string'){
-			extPath = [extPath];
-		}
-		
-		grunt.log.debug('nodePath' + nodePath);
-		extPath.concat(nodePath.split(path.delimiter)).forEach(function(p){
+        //fall back on global if not found at the usual location
+		nodePath.split(path.delimiter).forEach(function(p){
 			if(!/\/$/.test(p)){
 				p += '/';
 			}
-			paths.push(p);
-			paths.push(p + base);
+			paths.push(p + '/jsdoc/jsdoc.js');
 		});
 
-		for(var i in paths){
-			grunt.log.debug('look up ' + base + ' at ' + paths[i]);
-			if(fs.existsSync(paths[i]) && fs.statSync(paths[i]).isFile() === true ){
-				//get the absolute path
-				return path.resolve(paths[i]);
+		for(i in paths){
+            binPath = path.resolve(paths[i]);
+			if(fs.existsSync(binPath) && fs.statSync(binPath).isFile() === true){
+				return binPath;
 			}
 		}
 

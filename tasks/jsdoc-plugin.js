@@ -7,6 +7,10 @@
  * @module tasks/jsdoc-plugin
  */
 
+var fs			= require('fs');
+var	path		= require('path');
+var	exec		= require('./lib/exec');
+
 /**
  * Register the jsdoc task and helpers to Grunt
  * @type GruntTask
@@ -26,20 +30,16 @@ module.exports = function jsDocTask(grunt) {
 	 * Register the jsdoc task to Grunt
 	 */
 	function registerJsdocTask() {
-		var fs				= require('fs'),
-			path			= require('path'),
-			exec			= require('./lib/exec'),
-			options			= grunt.task.current.options({'private': true}),
+        var options			= grunt.task.current.options({'private': true}),
 			done			= grunt.task.current.async(),
 			srcs			= grunt.task.current.filesSrc,
 			jsDocPath		= grunt.task.current.data.jsdoc,
-			jsDocNpmPath	= 'node_modules/jsdoc/jsdoc',
 			timeout			= 60000,	//todo implement and move in options
-			cliFlags = ['recurse', 'private', 'lenient', 'explain', 'help', 'version', 'test', 'verbose', 'nocolor', 'template', 'configure', 'destination', 'encoding', 'tutorials', 'match', 'query'],
+ 	        cliFlags        = ['access', 'configure', 'destination', 'debug', 'encoding', 'help', 'match', 'nocolor', 'private', 'package', 'pedantic', 'query', 'recurse', 'readme', 'template', 'test', 'tutorials', 'version', 'verbose', 'explain'],
 			jsDoc;
 
 		//validate options
-		
+
 		if (!options.destination) {
 			// Support for old syntax where destination was provided through 'dest' key
 			options.destination = grunt.task.current.files[0].dest || 'doc';
@@ -65,19 +65,19 @@ module.exports = function jsDocTask(grunt) {
 			jsDoc = jsDocPath;
 		} else {
 			//lookup jsdoc
-			jsDoc = exec.lookup(grunt, jsDocNpmPath, ['node_modules/grunt-jsdoc/']);
+			jsDoc = exec.lookup(grunt);
 		}
 
-        // convert jsdoc path to relative path
-        jsDoc = path.relative('.', jsDoc);//, path.resolve('.'));
-
-		//check if jsdoc npm module is installedz
+		//check if jsdoc npm module is installed
 		if(jsDoc === undefined){
 			grunt.log.error('Unable to locate jsdoc');
 			grunt.fail.warn('Wrong installation/environnement', errorCode.generic);
-		} else {
-			grunt.log.debug("jsdoc found at : " + jsDoc);
 		}
+
+        // convert jsdoc path to relative path
+        jsDoc = path.relative('.', jsDoc);
+
+        grunt.log.debug("Using jsdoc from : " + jsDoc);
 
 		//check if there is sources to generate the doc for
 		if(srcs.length === 0 && !options.configure){
@@ -90,7 +90,7 @@ module.exports = function jsDocTask(grunt) {
 			grunt.log.error('jsdoc config file path does not exist');
 			grunt.fail.warn('Wrong configuration', errorCode.generic);
 		}
-		
+
 		fs.exists(options.destination, function(exists){
 			//if the destination don't exists, we create it
 			if(!exists){
