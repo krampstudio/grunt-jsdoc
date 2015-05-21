@@ -130,6 +130,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.5.5_ Update docstrap version
    * _0.5.6_ Fix dependencies version and bug [#87](https://github.com/krampstudio/grunt-jsdoc/issues/87)
    * _0.5.7_ Update readme, docstrap version
+   * _0.5.8_ Fix bug [#116](https://github.com/krampstudio/grunt-jsdoc/issues/116)
  * _0.4.0_ Update to jsdoc 3.2.0 stable, Fix [#37](https://github.com/krampstudio/grunt-jsdoc/issues/37), add integration tests
    * _0.4.1_ Fix [#53](https://github.com/krampstudio/grunt-jsdoc/issues/53) and [#54](https://github.com/krampstudio/grunt-jsdoc/issues/54)
    * _0.4.2_ Fix [#57](https://github.com/krampstudio/grunt-jsdoc/issues/57)
