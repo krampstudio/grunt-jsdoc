@@ -12,22 +12,11 @@ To comply with convention, the package's name was changed from `grunt-contrib-js
 
 You need [grunt >= 0.4][grunt] as well as [node] and [npm] installed and running on your system.
 
-You also need `java` installed and available in your PATH.
-
 Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with:
 
 ```bash
 npm install grunt-jsdoc --save-dev
 ```
-
-### jsdoc3 3.3.0
-
-The jsdoc3 team is working on the 3.3.0 version that works on node.js and doesn't need Rhino (Java) anymore. This version is not yet stable (flagged as _alpha_). If you want this plugin to use this version, you can install the _beta_ tag of this grunt plugin (branch 0.6.x).
-
-```bash
-npm install grunt-jsdoc@beta --save-dev
-```
-> Feedback on the beta branch is more than welcomed!
 
 ### Grunt <= 0.3.x
 
@@ -121,7 +110,7 @@ grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc/issues). Do some unit/integration tests as far as possible.
 
 ## Release History
- * _0.6.x_ Beta version in parrallel that rely on jsdoc3.3 alpha and beta releases.
+ * _0.6.4_ upgrade to jsdoc 3.3.0
  * _0.5.0_ Move to NPM dependencies instead of git, jsdoc 3.2.2 (Fix [#65](https://github.com/krampstudio/grunt-jsdoc/issues/65))
    * _0.5.1_ Update repo name to prevent confusion with previous version
    * _0.5.2_ Upgrade to Grunt 0.4.3 (PR [#74](https://github.com/krampstudio/grunt-jsdoc/pull/74))
