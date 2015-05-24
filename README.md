@@ -18,14 +18,6 @@ Install this grunt plugin next to your project's [Gruntfile.js][getting_started]
 npm install grunt-jsdoc --save-dev
 ```
 
-### Grunt <= 0.3.x
-
-If you use the previous version of Grunt (0.3), you can install it with:
-
-```bash
-npm install grunt-jsdoc-plugin
-```
-
 ## Upstream issues
 
 *For documentation related issues, please ask the jsdoc3 people.* To be sure the issue comes from the Grunt plugin, you can check by running directly jsdoc3 command. Run the task with the `--debug` flag and the command to run is outputed.
