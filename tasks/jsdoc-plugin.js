@@ -100,20 +100,18 @@ module.exports = function jsDocTask(grunt) {
 
 			//execution of the jsdoc command
 			var child = exec.buildSpawned(grunt, jsDoc, srcs, options);
-			child.stdout.on('data', function (data) {
-				grunt.log.debug('jsdoc output : ' + data);
-			});
-			child.stderr.on('data', function (data) {
-				grunt.log.error('An error occurs in jsdoc process:\n' + data);
-				grunt.fail.warn('jsdoc failure', errorCode.task);
+
+			child.stdout.on('data', grunt.log.debug)
+			child.stderr.on('data', function(data) {
+				if (!options.ignoreWarnings)
+					grunt.log.error(data);
 			});
 			child.on('exit', function(code){
 				if(code === 0){
 					grunt.log.write('Documentation generated to ' + path.resolve(options.destination));
 					done(true);
 				} else {
-					grunt.log.error('jsdoc terminated');
-					grunt.fail.warn('jsdoc failure', errorCode.task);
+					grunt.fail.warn('jsdoc terminated with a non-zero exit code', errorCode.task);
 				}
 			});
 		});
