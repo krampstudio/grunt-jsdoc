@@ -1,52 +1,60 @@
 module.exports = function(grunt) {
-  'use strict';
+    'use strict';
 
-  // Project configuration.
-  grunt.initConfig({
-    clean : ['doc'],
-    jsdoc : {
-      basic : {
-        src : ['tasks/**.js', 'tasks/lib/*.js'],
-        options : {
-          destination: 'doc/basic'
+
+    require('load-grunt-tasks')(grunt);
+
+    // Project configuration.
+    grunt.initConfig({
+        clean: ['doc'],
+        jsdoc: {
+            basic: {
+                src: ['tasks/**.js', 'tasks/lib/*.js'],
+                options: {
+                    destination: 'doc/basic'
+                }
+            },
+            spacepack: {
+                src: ['tasks/**/*.js'],
+                options: {
+                    destination: 'doc/pack age',
+                    package: 'package.json'
+                }
+            },
+            docstrap: {
+                src: ['tasks/**.js', 'tasks/lib/*.js', 'README.md'],
+                options: {
+                    destination: 'doc/docstrap',
+                    template: "node_modules/ink-docstrap/template",
+                    configure: "node_modules/ink-docstrap/template/jsdoc.conf.json"
+                }
+            }
+        },
+        nodeunit: {
+            unit: ['test/jsdoc-plugin_test.js'],
+            basic: ['test/jsdoc-basic_test.js'],
+            docstrap: ['test/jsdoc-docstrap_test.js'],
+            spacepack: ['test/jsdoc-spacepack_test.js']
+        },
+        jshint: {
+            files: ['Gruntfile.js', 'tasks/*.js', 'tasks/lib/*.js', 'test/*.js'],
+            options: {
+                node: true,
+                smarttabs: true
+            }
         }
-      },
-      docstrap : {
-        src : ['tasks/**.js', 'tasks/lib/*.js', 'README.md'],
-        options : {
-          destination : 'doc/docstrap',
-            template : "node_modules/ink-docstrap/template",
-            configure : "node_modules/ink-docstrap/template/jsdoc.conf.json"
-        }
-      }
-    },
-    nodeunit : {
-      unit : ['test/jsdoc-plugin_test.js'],
-      basic : ['test/jsdoc-basic_test.js'],
-      docstrap : ['test/jsdoc-docstrap_test.js']
-    },
-    jshint : {
-      files : ['Gruntfile.js', 'tasks/*.js', 'tasks/lib/*.js', 'test/*.js'],
-      options: {
-        node : true,
-        smarttabs : true
-      }
-    }
-  });
+    });
 
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+    // Load local tasks.
+    grunt.loadTasks('tasks');
 
-  // Load local tasks.
-  grunt.loadTasks('tasks');
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'test']);
+    //testing tasks
+    grunt.registerTask('default', 'Default tas will lint and test', ['jshint', 'test']);
+    grunt.registerTask('test-basic', 'Test basic jsdoc', ['jsdoc:basic', 'nodeunit:basic']);
+    grunt.registerTask('test-docstrap', 'Test jsdoc with a template', ['jsdoc:docstrap', 'nodeunit:docstrap']);
+    grunt.registerTask('test-spacepack', 'Test jsdoc with a package and spaces in the paths', ['jsdoc:spacepack', 'nodeunit:spacepack']);
+    grunt.registerTask('test', 'Full test suite', ['clean', 'nodeunit:unit', 'test-basic', 'test-docstrap', 'test-spacepack']);
 
-  //testing tasks
-  grunt.registerTask('test-basic', ['jsdoc:basic', 'nodeunit:basic']);
-  grunt.registerTask('test-docstrap', ['jsdoc:docstrap', 'nodeunit:docstrap']);
-  grunt.registerTask('test', ['clean', 'nodeunit:unit', 'test-basic', 'test-docstrap']);
-  
 };
+

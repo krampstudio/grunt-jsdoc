@@ -54,6 +54,7 @@ The supported options are
    * `template` : (optional) path or name to a different template
    * `private` : (optional) include the private functions to the doc (`true` by default).
    * ... refer the [usejsdocCli] documentation for all the available options.
+   * `ignoreWarnings` : (optional) do not show jsdoc warnings
 
 Then, load the plugin
 
