@@ -14,7 +14,7 @@ module.exports = function(grunt) {
       docstrap : {
         src : ['tasks/**.js', 'tasks/lib/*.js', 'README.md'],
         options : {
-          destination : 'doc/docstrap',
+          destination : 'my doc/docstrap',
             template : "node_modules/ink-docstrap/template",
             configure : "node_modules/ink-docstrap/template/jsdoc.conf.json"
         }
@@ -48,5 +48,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test-basic', ['jsdoc:basic', 'nodeunit:basic']);
   grunt.registerTask('test-docstrap', ['jsdoc:docstrap', 'nodeunit:docstrap']);
   grunt.registerTask('test', ['clean', 'nodeunit:unit', 'test-basic', 'test-docstrap']);
-  
+
 };

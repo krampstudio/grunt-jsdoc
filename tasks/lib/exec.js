@@ -1,7 +1,6 @@
-'use strict';
-
-var fs = require('fs');
-var path = require('path');
+var path  = require('path');
+var spawn = require('child_process').spawn;
+var isWin = process.platform === 'win32';
 
 /**
  * Provides utility methods to execute a command
@@ -14,49 +13,41 @@ module.exports = {
 	 * @param {Object} grunt - the grunt context
 	 * @param {String} script - the script to run
 	 * @param {Array} sources - the list of sources files
-	 * @param {Object} options - the list of cli flags
+	 * @param {Object} params - the list of cli flags
 	 * @return {ChildProcess} from the spawn
 	 */
-	buildSpawned : function(grunt, script, sources, options){
+	buildSpawned : function(grunt, script, sources, params){
 
-		var util = require('util'),
-			isWin = process.platform === 'win32',
-			cmd = (isWin) ? 'cmd' : script,
-			args = (isWin) ? ['/c', script] : [],
-			spawn = require('child_process').spawn;
+        var flag;
+		var cmd = (isWin) ? 'cmd' : script;
+		var args = (isWin) ? ['/c', script] : [];
+
+
+         // handle paths that contain spaces
+        var quote = function quote(path){
+            if(path.indexOf(' ') !== -1){
+                return (isWin) ? '"' + path + '"' : path.replace(/ /g, '\\ ');
+            }
+            return path;
+        };
 
 		// Compute JSDoc options
-		for (var optionName in options) {
-			var option = options[optionName];
-			grunt.log.debug("Reading option: " + optionName);
-			args.push('--' + optionName);
-			if (options.hasOwnProperty(optionName) && typeof option === 'string') {
-				grunt.log.debug("                > " + option);
-				args.push(option);
-			}
+		for (flag in params) {
+			if (params.hasOwnProperty(flag)) {
+                if (params[flag] !== false){
+			        args.push('--' + flag);
+                }
+                if (typeof params[flag] === 'string') {
+                    args.push(quote(params[flag]));
+                }
+            }
 		}
 
-		if(!util.isArray(sources)){
+		if(!Array.isArray(sources)){
 			sources = [sources];
 		}
-		args.push.apply(args, sources);
+		args = args.concat(sources.map(quote));
 
-		// handle paths that contain spaces
-		if (isWin) {
-			// Windows: quote paths that have spaces
-			args = args.map(function(item){
-				if (item.indexOf(' ')>=0) {
-                    return '"' + item + '"';
-                } else {
-                    return item;
-                }
-			});
-		} else {
-            // Unix: escape spaces in paths
-            args = args.map(function(item){
-                return item.replace(' ', '\\ ');
-            });
-        }
 		grunt.log.debug("Running : "+ cmd + " " + args.join(' '));
 
 		return spawn(cmd, args, {
@@ -89,7 +80,7 @@ module.exports = {
 
 		for(i in paths){
             binPath = path.resolve(paths[i]);
-			if(fs.existsSync(binPath) && fs.statSync(binPath).isFile() === true){
+			if(grunt.file.exists(binPath) && grunt.file.isFile(binPath)){
 				return binPath;
 			}
 		}

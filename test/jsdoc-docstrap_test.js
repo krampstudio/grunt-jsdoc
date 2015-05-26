@@ -1,6 +1,6 @@
 var test = require('./jsdoc-task_test');
 test.setUp = function(done){
-    this.destination = 'doc/docstrap';
+    this.destination = 'my\ doc/docstrap';
     done();
 };
 
