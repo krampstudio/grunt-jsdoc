@@ -25,8 +25,8 @@ module.exports = {
 
          // handle paths that contain spaces
         var quote = function quote(path){
-            if(path.indexOf(' ') !== -1){
-                return (isWin) ? '"' + path + '"' : path.replace(/ /g, '\\ ');
+            if(isWin && path.indexOf(' ') !== -1){
+                return '"' + path + '"';
             }
             return path;
         };

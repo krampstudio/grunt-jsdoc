@@ -8,7 +8,7 @@
  */
 
 var fs = require('fs');
-var expectedFiles = ['index.html', 'module-tasks_jsdoc-plugin.html', 'jsdoc-plugin.js.html'];
+
 
 /**
  * NodeUnit group of test that check the result once the task has been launched
@@ -44,9 +44,9 @@ var JsdocTaskTest = {
 
         var base = this.destination + '/';
 
-        test.expect(expectedFiles.length);
+        test.expect(this.expectedFiles.length);
 
-        expectedFiles.forEach(function(file){
+        this.expectedFiles.forEach(function(file){
             test.ok(fs.existsSync(base + file), 'The file ' + base + file + ' should exists');
         });
         test.done();
