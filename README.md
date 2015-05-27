@@ -45,15 +45,12 @@ grunt.initConfig({
 
 The supported options are
 
- * `src` : (required) an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
+ * `src` : an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
  * `dest` : (alias to `options.destination`) set up the destination folder, the grunt way
  * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some border line cases)
  * `options` : options used by jsdoc
-   * `destination`: (required) the folder where the doc is generated
-   * `configure` : (optional) path to a config file
-   * `template` : (optional) path or name to a different template
-   * `private` : (optional) include the private functions to the doc (`true` by default).
-   * ... refer the [usejsdocCli] documentation for all the available options.
+   * `destination`: the folder where the doc is generated
+   * ... all jsdoc options are available (see [usejsdocCli] documentation).
    * `ignoreWarnings` : (optional) do not show jsdoc warnings
 
 Then, load the plugin
@@ -103,6 +100,7 @@ grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc/issues). Do some unit/integration tests as far as possible.
 
 ## Release History
+ * _0.6.5_ code refactoring, docstrap 0.5.3, PR [#120](https://github.com/krampstudio/grunt-jsdoc/pull/120), better path management
  * _0.6.4_ upgrade to jsdoc 3.3.0
  * _0.5.0_ Move to NPM dependencies instead of git, jsdoc 3.2.2 (Fix [#65](https://github.com/krampstudio/grunt-jsdoc/issues/65))
    * _0.5.1_ Update repo name to prevent confusion with previous version
