@@ -1,6 +1,7 @@
 var testCase = require('./task');
+var package = require('../package.json');
 testCase.setUp = function(done){
-    this.destination = 'doc/pack age/grunt-jsdoc/0.6.4';
+    this.destination = 'doc/pack age/' + package.name + '/' + package.version;
     this.expectedFiles = [
         'index.html',
         'jsdoc-plugin.js.html',

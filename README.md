@@ -100,6 +100,7 @@ grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc/issues). Do some unit/integration tests as far as possible.
 
 ## Release History
+ * _0.6.6_ fix failing test
  * _0.6.5_ code refactoring, docstrap 0.5.3, PR [#120](https://github.com/krampstudio/grunt-jsdoc/pull/120), better path management
  * _0.6.4_ upgrade to jsdoc 3.3.0
  * _0.5.0_ Move to NPM dependencies instead of git, jsdoc 3.2.2 (Fix [#65](https://github.com/krampstudio/grunt-jsdoc/issues/65))
