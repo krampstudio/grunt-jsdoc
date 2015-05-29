@@ -14,6 +14,15 @@ module.exports = function(grunt) {
                     destination: 'doc/basic'
                 }
             },
+            alternate: {
+                src: ['tasks'],
+                dest : 'doc/alternate',
+                options: {
+                    readme : 'README.md',
+                    recurse : true,
+                    private : false
+                }
+            },
             spacepack: {
                 src: ['tasks/**/*.js'],
                 options: {
@@ -33,6 +42,7 @@ module.exports = function(grunt) {
         nodeunit: {
             unit: ['test/jsdoc-plugin_test.js'],
             basic: ['test/jsdoc-basic_test.js'],
+            alternate: ['test/jsdoc-alternate_test.js'],
             docstrap: ['test/jsdoc-docstrap_test.js'],
             spacepack: ['test/jsdoc-spacepack_test.js']
         },
@@ -52,6 +62,7 @@ module.exports = function(grunt) {
     //testing tasks
     grunt.registerTask('default', 'Default tas will lint and test', ['jshint', 'test']);
     grunt.registerTask('test-basic', 'Test basic jsdoc', ['jsdoc:basic', 'nodeunit:basic']);
+    grunt.registerTask('test-basic', 'Test jsdoc with alternate options', ['jsdoc:alternate', 'nodeunit:alternate']);
     grunt.registerTask('test-docstrap', 'Test jsdoc with a template', ['jsdoc:docstrap', 'nodeunit:docstrap']);
     grunt.registerTask('test-spacepack', 'Test jsdoc with a package and spaces in the paths', ['jsdoc:spacepack', 'nodeunit:spacepack']);
     grunt.registerTask('test', 'Full test suite', ['clean', 'nodeunit:unit', 'test-basic', 'test-docstrap', 'test-spacepack']);
