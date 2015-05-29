@@ -45,7 +45,7 @@ module.exports = function jsDocTask(grunt) {
 
         if (!options.destination) {
             // Support for old syntax where destination was provided through 'dest' key
-            params.destination = this.files[0].dest || 'doc';
+            options.destination = this.files[0].dest || 'doc';
         }
 
         //legacy configs
