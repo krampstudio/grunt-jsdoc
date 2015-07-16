@@ -115,6 +115,7 @@ module.exports = function jsDocTask(grunt) {
                 done(true);
             } else {
                 grunt.fail.warn('jsdoc terminated with a non-zero exit code', errorCode.task);
+                done();
             }
         });
     });
