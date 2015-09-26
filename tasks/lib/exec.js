@@ -20,7 +20,7 @@ module.exports = {
 
         var flag;
 		var cmd = (isWin) ? 'cmd' : script;
-		var args = (isWin) ? ['/c', script] : [];
+		var args = (isWin) ? ['/c', script.slice(-2) === 'js' ? 'node ' + script : script] : [];
 
 
          // handle paths that contain spaces
