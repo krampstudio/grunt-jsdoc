@@ -107,6 +107,7 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
     * _0.6.7_ Fix bug [#136](https://github.com/krampstudio/grunt-jsdoc/issues/136) and add more tests
     * _0.6.8_ Fix bug [#140](https://github.com/krampstudio/grunt-jsdoc/issues/140), [#143](https://github.com/krampstudio/grunt-jsdoc/issues/143),
     * _0.6.9_ Fix bug [#144](https://github.com/krampstudio/grunt-jsdoc/issues/144)
+    * _0.6.10_ Revert wrong moving away docstrap dep
 * _0.5.0_ Move to NPM dependencies instead of git, jsdoc 3.2.2 (Fix [#65](https://github.com/krampstudio/grunt-jsdoc/issues/65))
    * _0.5.1_ Update repo name to prevent confusion with previous version
    * _0.5.2_ Upgrade to Grunt 0.4.3 (PR [#74](https://github.com/krampstudio/grunt-jsdoc/pull/74))
