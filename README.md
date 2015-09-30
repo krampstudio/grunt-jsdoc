@@ -74,6 +74,21 @@ jsdoc : {
         src: ['src/**/*.js', 'README.md'],
         options: {
             destination: 'doc',
+            template : "node_modules/ink-docstrap/template",
+            configure : "node_modules/ink-docstrap/template/jsdoc.conf.json"
+        }
+    }
+}
+```
+
+If you're using a **npm** version previous than 3.x.x, you should include the non-flattened **grunt-jsdoc** folder:
+
+```javascript
+jsdoc : {
+    dist : {
+        src: ['src/**/*.js', 'README.md'],
+        options: {
+            destination: 'doc',
             template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
             configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
         }
