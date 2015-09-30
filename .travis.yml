@@ -1,6 +1,10 @@
 language : node_js
-node_js : 
+node_js :
+    - "0.8"
     - "0.10"
-before_script : 
+    - "0.12"
+    - "4.1"
+before_script :
+    - node --version | grep 4.1 && npm update -g npm
     - npm install -g grunt-cli
 
