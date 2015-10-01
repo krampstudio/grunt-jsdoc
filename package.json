@@ -26,13 +26,13 @@
   "main": "Gruntfile.js",
   "bin": "bin/grunt-jsdoc",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "^0.4.3",
+    "grunt": "^0.4.5",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-nodeunit": "~0.4.0",
@@ -43,7 +43,7 @@
     "ink-docstrap": "^0.5.2"
   },
   "peerDependencies": {
-    "grunt": "^0.4.0"
+    "grunt": "*"
   },
   "keywords": [
     "gruntplugin",
