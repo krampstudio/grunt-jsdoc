@@ -4,13 +4,18 @@
 
 This plugin enables you to integrate the generation of comments based documentation into your Grunt build.
 
-## NPM package name change
+## Compatibility
 
-To comply with convention, the package's name was changed from `grunt-contrib-jsdoc` to `grunt-jsdoc`. You'll have to upgrade your `package.json` if you're still using `grunt-contrib-jsdoc`.
+### :warning: Migrate from a version of the `0.x.x` branch to the `1.x.x` branch :
 
-## Install
+I have removed the direct dependency to [ink-docstrap](https://www.npmjs.com/package/ink-docstrap). If you still want it, grab the dependency by yourself (`npm install --save-dev ink-docstrap`)
 
-You need [grunt >= 0.4][grunt] as well as [node] and [npm] installed and running on your system.
+
+## Generate your documentation
+
+### Install
+
+You need [grunt >= 0.4][grunt]
 
 Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with:
 
@@ -18,15 +23,9 @@ Install this grunt plugin next to your project's [Gruntfile.js][getting_started]
 npm install grunt-jsdoc --save-dev
 ```
 
-## Upstream issues
-
-*For documentation related issues, please ask the jsdoc3 people.* To be sure the issue comes from the Grunt plugin, you can check by running directly jsdoc3 command. Run the task with the `--debug` flag and the command to run is outputed.
-
-## Documentation
-
 ### Configuration
 
-Configure the plugin to your project's [Gruntfile.js][getting_started].
+Configure the plugin into your project's [Gruntfile.js](https://github.com/gruntjs/grunt/wiki/Getting-started).
 
 First, add the `jsdoc` entry to the options of the `initConfig` method :
 
@@ -45,12 +44,12 @@ grunt.initConfig({
 
 The supported options are
 
- * `src` : an array of pattern that matches the files to extract the documentation from. You can also add the pattern to a README.md file to include it in your doc as described [there](http://usejsdoc.org/about-including-readme.html).
+ * `src` : an array of pattern that matches the files to extract the documentation from. You can also [include a README](http://usejsdoc.org/about-including-readme.html).
  * `dest` : (alias to `options.destination`) set up the destination folder, the grunt way
  * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some border line cases)
  * `options` : options used by jsdoc
    * `destination`: the folder where the doc is generated
-   * ... all jsdoc options are available (see [usejsdocCli] documentation).
+   * ... All jsdoc options are available (see [usejsdocCli](http://usejsdoc.org/about-commandline.html) documentation).
    * `ignoreWarnings` : (optional) do not show jsdoc warnings
 
 Then, load the plugin
@@ -61,27 +60,32 @@ grunt.loadNpmTasks('grunt-jsdoc');
 
 ### Code Documentation
 
-The current version supports only [jsdoc3] documentation style. The sources configured
-must contains valid [jsdoc3] tags. Consult the [usejsdoc] website for the details.
+This plugin is a wrapper around [jsdoc3](https://github.com/jsdoc3/jsdoc). Please refer to the [documentation](http://usejsdoc.org) for the documentation details.
 
 ### Templates
 
-The plugin includes [docstrap](https://github.com/terryweiss/docstrap), as well as the default template provided by jsdoc3. To use docstrap, you can use the following configuration:
+The plugin includes only the jsdoc3 template but you can configure other templates. For example to use [ink-docstrap](https://www.npmjs.com/package/ink-docstrap).
+
+```
+npm install --save-dev ink-docstrap
+```
+
+And in your `Gruntfile.js` :
 
 ```javascript
 jsdoc : {
     dist : {
         src: ['src/**/*.js', 'README.md'],
         options: {
-            destination: 'doc',
-            template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
-            configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
+            destination : 'doc',
+               template : "node_modules/ink-docstrap/template",
+              configure : "node_modules/ink-docstrap/template/jsdoc.conf.json"
         }
     }
 }
 ```
 
-### Build
+## Generation
 
 To generate the documentation, you need to call the `jsdoc` task :
 
@@ -95,11 +99,25 @@ or integrate it to your build sequence :
 grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 ```
 
-## Contributing
+## Contributions
 
-Any contribution is welcome! Please check the [issues](https://github.com/krampstudio/grunt-jsdoc/issues). Do some unit/integration tests as far as possible.
+Every contribution is more than welcomed. You can:
+ - [report issues](https://github.com/krampstudio/grunt-jsdoc/issues)
+ - Fix, improve the configuration, add new features. The best is to fork and submit a pull request
+ - Test and adapt to other OS
+ - Fix my English mistakes
+ - Update the documentation
+ - Create a better logo
+ - [Offer me a coffee](https://gratipay.com/~krampstudio/) (I'm maintaining this plugin on my free time)
+
+### Upstream issues
+
+*For documentation related issues, please use the [jsdoc issue tracker](https://github.com/jsdoc3/jsdoc/issues)*
+
+To be sure the issue comes from the Grunt plugin, you can check by comparing the results with a jsdoc command. Run the task with the `--debug` flag to retrieve the jsdoc command to run.
 
 ## Release History
+ * _1.0.0_ remove direct dependency to docstrap
  * _0.6.0_ jsdoc 3.0.0
     * _0.6.4_ first stable using jsdoc 3.3.0
     * _0.6.5_ code refactoring, docstrap 0.5.3, PR [#120](https://github.com/krampstudio/grunt-jsdoc/pull/120), better path management
@@ -137,16 +155,8 @@ Any contribution is welcome! Please check the [issues](https://github.com/kramps
    * _0.1.4_ Use `child_process.spawn` instead of `exec` to run the command
 
 
-[jsdoc3]: https://github.com/jsdoc3/jsdoc
-
 ## License
+
 Copyright (c) 2012 Bertrand Chevrier
 Licensed under the MIT license.
 
-
-[grunt]: https://gruntjs.com
-[node]: http://nodejs.org
-[npm]: http://npmjs.org
-[getting_started]: https://github.com/gruntjs/grunt/wiki/Getting-started
-[usejsdoc]: http://usejsdoc.org
-[usejsdocCli]: http://usejsdoc.org/about-commandline.html
