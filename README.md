@@ -62,7 +62,7 @@ This plugin is a wrapper around [jsdoc3](https://github.com/jsdoc3/jsdoc). Pleas
 
 ### Templates
 
-The plugin includes only the jsdoc3 template but you can configure other templates. For example to use [ink-docstrap](https://www.npmjs.com/package/ink-docstrap).
+The plugin includes only the jsdoc3 template but you can configure any other jsdoc3 template. For example you can use [ink-docstrap](https://www.npmjs.com/package/ink-docstrap).
 
 ```
 npm install --save-dev ink-docstrap
