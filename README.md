@@ -6,7 +6,7 @@ This plugin enables you to integrate the generation of comments based documentat
 
 ## Compatibility
 
-### :warning: Migrate from a version of the `0.x.x` branch to the `1.x.x` branch :
+### :warning: Migrate from `0.x.x` to `1.x.x` branch :
 
 I have removed the direct dependency to [ink-docstrap](https://www.npmjs.com/package/ink-docstrap). If you still want it, grab the dependency by yourself (`npm install --save-dev ink-docstrap`)
 
@@ -15,19 +15,23 @@ I have removed the direct dependency to [ink-docstrap](https://www.npmjs.com/pac
 
 ### Install
 
-You need [grunt >= 0.4][grunt]
+This plugin requires Grunt `>=0.4.0`
 
-Install this grunt plugin next to your project's [Gruntfile.js][getting_started] with:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
-```bash
+```shell
 npm install grunt-jsdoc --save-dev
+```
+
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+
+```js
+grunt.loadNpmTasks('grunt-jsdoc');
 ```
 
 ### Configuration
 
-Configure the plugin into your project's [Gruntfile.js](https://github.com/gruntjs/grunt/wiki/Getting-started).
-
-First, add the `jsdoc` entry to the options of the `initConfig` method :
+First, add the `jsdoc` entry to the options of the `initConfig` method of your Gruntfile.js : 
 
 ```javascript
 grunt.initConfig({
@@ -51,12 +55,6 @@ The supported options are
    * `destination`: the folder where the doc is generated
    * ... All jsdoc options are available (see [usejsdocCli](http://usejsdoc.org/about-commandline.html) documentation).
    * `ignoreWarnings` : (optional) do not show jsdoc warnings
-
-Then, load the plugin
-
-```javascript
-grunt.loadNpmTasks('grunt-jsdoc');
-```
 
 ### Code Documentation
 
