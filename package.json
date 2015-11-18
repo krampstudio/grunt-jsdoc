@@ -1,7 +1,7 @@
 {
   "name": "grunt-jsdoc",
   "description": "Integrates jsdoc3 generation into your Grunt build",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/krampstudio/grunt-jsdoc",
   "author": {
     "name": "Bertrand Chevrier",
@@ -40,7 +40,7 @@
     "ink-docstrap": "^0.5.2"
   },
   "dependencies": {
-    "jsdoc": "^3.3.3"
+    "jsdoc": "^4.0.0"
   },
   "peerDependencies": {
     "grunt": "*"
