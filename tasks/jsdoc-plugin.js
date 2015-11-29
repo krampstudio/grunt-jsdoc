@@ -91,7 +91,7 @@ module.exports = function jsDocTask(grunt) {
             grunt.fail.warn('Wrong configuration', errorCode.generic);
         }
 
-        if (!grunt.file.exists(params.destination)) {
+        if (!grunt.file.exists(params.destination) && !params.configure) {
             grunt.file.mkdir(options.destination);
             grunt.log.debug('create destination : ' + options.destination);
             if (!grunt.file.exists(params.destination)) {
