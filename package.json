@@ -40,7 +40,7 @@
     "ink-docstrap": "^0.5.2"
   },
   "dependencies": {
-    "jsdoc": "^3.3.3"
+    "jsdoc": "^3.4.0"
   },
   "peerDependencies": {
     "grunt": "*"
