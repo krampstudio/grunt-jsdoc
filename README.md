@@ -31,7 +31,7 @@ grunt.loadNpmTasks('grunt-jsdoc');
 
 ### Configuration
 
-First, add the `jsdoc` entry to the options of the `initConfig` method of your Gruntfile.js : 
+First, add the `jsdoc` entry to the options of the `initConfig` method of your Gruntfile.js :
 
 ```javascript
 grunt.initConfig({
@@ -115,6 +115,7 @@ Every contribution is more than welcomed. You can:
 To be sure the issue comes from the Grunt plugin, you can check by comparing the results with a jsdoc command. Run the task with the `--debug` flag to retrieve the jsdoc command to run.
 
 ## Release History
+ * _1.1.0_ update to jsdoc 3.4.0 and make dest optional if a config file is set.
  * _1.0.0_ remove direct dependency to docstrap
  * _0.6.0_ jsdoc 3.0.0
     * _0.6.4_ first stable using jsdoc 3.3.0
