@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 
 
     //testing tasks
-    grunt.registerTask('default', 'Default tas will lint and test', ['jshint', 'test']);
+    grunt.registerTask('default', 'Default task will lint and test', ['jshint', 'test']);
     grunt.registerTask('test-basic', 'Test basic jsdoc', ['jsdoc:basic', 'nodeunit:basic']);
     grunt.registerTask('test-alternate', 'Test jsdoc with alternate options', ['jsdoc:alternate', 'nodeunit:alternate']);
     grunt.registerTask('test-docstrap', 'Test jsdoc with a template', ['jsdoc:docstrap', 'nodeunit:docstrap']);
