@@ -35,7 +35,6 @@ module.exports = function jsDocTask(grunt) {
         var params = {};
         var done = this.async();
         var options = this.options({
-            'private': true,
             'ignoreWarnings': false,
             'timeout': 60
         });
