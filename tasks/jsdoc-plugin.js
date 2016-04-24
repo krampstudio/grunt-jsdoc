@@ -77,7 +77,7 @@ module.exports = function jsDocTask(grunt) {
         // convert jsdoc path to relative path
         jsdoc = path.relative('.', jsdoc);
 
-        grunt.log.debug("Using jsdoc from : " + jsdoc);
+        grunt.log.debug('Using jsdoc from : ' + jsdoc);
 
         //check if there is sources to generate the doc for
         if (sources.length === 0 && !params.configure) {
