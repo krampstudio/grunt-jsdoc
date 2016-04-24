@@ -30,7 +30,8 @@ module.exports = function jsDocTask(grunt) {
     //bind the task to the grunt context
     grunt.registerMultiTask('jsdoc', 'Generates source documentation using jsdoc', function registerJsdocTask() {
 
-        var jsdoc;
+        var jsdoc,
+            child;
         var params = {};
         var done = this.async();
         var options = this.options({
@@ -38,7 +39,6 @@ module.exports = function jsDocTask(grunt) {
             'ignoreWarnings': false,
             'timeout': 60
         });
-
 
         var sources = this.filesSrc;
         var jsdocPath = this.data.jsdoc;
@@ -101,7 +101,7 @@ module.exports = function jsDocTask(grunt) {
         }
 
         //execution of the jsdoc command
-        var child = exec.buildSpawned(grunt, jsdoc, sources, params);
+        child = exec.buildSpawned(grunt, jsdoc, sources, params);
 
         child.stdout.on('data', grunt.log.debug);
         child.stderr.on('data', function(data) {

@@ -1,7 +1,5 @@
 var path = require('path');
-var spawn = require('child_process').spawn;
-var isWin = process.platform === 'win32';
-
+var spawn = require('cross-spawn-async');
 /**
  * Provides utility methods to execute a command
  * @module exec
@@ -19,18 +17,9 @@ module.exports = {
     buildSpawned: function(grunt, script, sources, params) {
 
         var flag;
-        var cmd = (isWin) ? 'cmd' : script;
-        var args = (isWin) ? ['/c', script.slice(-2) === 'js' ? 'node ' + script : script] : [];
+        var cmd = script;
+        var args =[];
 
-
-        // handle paths that contain spaces
-        var quote = function quote(path) {
-            if (isWin && path.indexOf(' ') !== -1) {
-                return '"' + path + '"';
-
-            }
-            return path;
-        };
 
         // Compute JSDoc options
         for (flag in params) {
@@ -39,7 +28,7 @@ module.exports = {
                     args.push('--' + flag);
                 }
                 if (typeof params[flag] === 'string') {
-                    args.push(quote(params[flag]));
+                    args.push(params[flag]);
                 }
             }
         }
@@ -47,13 +36,11 @@ module.exports = {
         if (!Array.isArray(sources)) {
             sources = [sources];
         }
-        args = args.concat(sources.map(quote));
+        args = args.concat(sources);
 
         grunt.log.debug('Running : ' + cmd + ' ' + args.join(' '));
 
-        return spawn(cmd, args, {
-            windowsVerbatimArguments: isWin // documentation PR is pending: https://github.com/joyent/node/pull/4259
-        });
+        return spawn(cmd, args);
     },
 
     /**
