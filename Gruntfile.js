@@ -43,6 +43,11 @@ module.exports = function(grunt) {
                     template: 'node_modules/ink-docstrap/template',
                     configure: 'node_modules/ink-docstrap/template/jsdoc.conf.json'
                 }
+            },
+            nosrc : {
+                options: {
+                    configure : 'test/nosrc.json'
+                }
             }
         },
         nodeunit: {
@@ -50,7 +55,8 @@ module.exports = function(grunt) {
             basic:     ['test/jsdoc-basic_test.js'],
             alternate: ['test/jsdoc-alternate_test.js'],
             docstrap:  ['test/jsdoc-docstrap_test.js'],
-            spacepack: ['test/jsdoc-spacepack_test.js']
+            spacepack: ['test/jsdoc-spacepack_test.js'],
+            nosrc: ['test/jsdoc-nosrc_test.js']
         },
 
         eslint: {
@@ -69,7 +75,8 @@ module.exports = function(grunt) {
     grunt.registerTask('test-alternate', 'Test jsdoc with alternate options', ['jsdoc:alternate', 'nodeunit:alternate']);
     grunt.registerTask('test-docstrap',  'Test jsdoc with a template', ['jsdoc:docstrap', 'nodeunit:docstrap']);
     grunt.registerTask('test-spacepack', 'Test jsdoc with a package and spaces in the paths', ['jsdoc:spacepack', 'nodeunit:spacepack']);
-    grunt.registerTask('test',           'Full test suite', ['clean:test', 'nodeunit:unit', 'test-basic', 'test-alternate', 'test-docstrap', 'test-spacepack']);
+    grunt.registerTask('test-nosrc', 'Test jsdoc without src and dest, only a config', ['jsdoc:nosrc', 'nodeunit:nosrc']);
+    grunt.registerTask('test',           'Full test suite', ['clean:test', 'nodeunit:unit', 'test-basic', 'test-alternate', 'test-docstrap', 'test-spacepack', 'test-nosrc']);
 
     grunt.registerTask('default', 'Default task will lint and test', ['eslint:all', 'test']);
 };

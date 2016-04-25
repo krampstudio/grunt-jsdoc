@@ -4,11 +4,6 @@
 
 This plugin enables you to integrate the generation of comments based documentation into your Grunt build.
 
-## Compatibility
-
-### :warning: Migrate from `0.x.x` to `1.x.x` branch :
-
-I have removed the direct dependency to [ink-docstrap](https://www.npmjs.com/package/ink-docstrap). If you still want it, grab the dependency by yourself (`npm install --save-dev ink-docstrap`)
 
 
 ## Generate your documentation
@@ -97,6 +92,16 @@ or integrate it to your build sequence :
 grunt.registerTask('default', ['lint', 'test', 'jsdoc']);
 ```
 
+## Compatibility
+
+### :warning: Migrate from `0.x.x` to `1.x.x` branch :
+
+I have removed the direct dependency to [ink-docstrap](https://www.npmjs.com/package/ink-docstrap). If you still want it, grab the dependency by yourself (`npm install --save-dev ink-docstrap`)
+
+### :warning: Migrate from `1.x.x` to `2.x.x` branch :
+
+The `private` option follows now the default jsdoc behavior : `false` by default.
+
 ## Contributions
 
 Every contribution is more than welcomed. You can:
@@ -115,6 +120,7 @@ Every contribution is more than welcomed. You can:
 To be sure the issue comes from the Grunt plugin, you can check by comparing the results with a jsdoc command. Run the task with the `--debug` flag to retrieve the jsdoc command to run.
 
 ## Release History
+ * _2.0.0_ `private` behavior, `cross-spawn-async` instead of manual windows management
  * _1.1.0_ update to jsdoc 3.4.0 and make dest optional if a config file is set.
  * _1.0.0_ remove direct dependency to docstrap
  * _0.6.0_ jsdoc 3.0.0
