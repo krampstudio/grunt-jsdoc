@@ -30,20 +30,19 @@ module.exports = function jsDocTask(grunt) {
     //bind the task to the grunt context
     grunt.registerMultiTask('jsdoc', 'Generates source documentation using jsdoc', function registerJsdocTask() {
 
-        var jsdoc;
+        var jsdoc,
+            child;
         var params = {};
         var done = this.async();
         var options = this.options({
-            'private': true,
             'ignoreWarnings': false,
             'timeout': 60
         });
 
-
         var sources = this.filesSrc;
         var jsdocPath = this.data.jsdoc;
 
-        if (!options.destination) {
+        if (!options.destination && this.files.length) {
             // Support for old syntax where destination was provided through 'dest' key
             options.destination = this.files[0].dest || 'doc';
         }
@@ -77,7 +76,7 @@ module.exports = function jsDocTask(grunt) {
         // convert jsdoc path to relative path
         jsdoc = path.relative('.', jsdoc);
 
-        grunt.log.debug("Using jsdoc from : " + jsdoc);
+        grunt.log.debug('Using jsdoc from : ' + jsdoc);
 
         //check if there is sources to generate the doc for
         if (sources.length === 0 && !params.configure) {
@@ -85,13 +84,14 @@ module.exports = function jsDocTask(grunt) {
             grunt.fail.warn('Wrong configuration', errorCode.generic);
         }
 
+
         //check if jsdoc config file path is provided and does exist
         if (params.configure && !grunt.file.exists(params.configure)) {
             grunt.log.error('jsdoc config file path does not exist');
             grunt.fail.warn('Wrong configuration', errorCode.generic);
         }
 
-        if (!grunt.file.exists(params.destination) && !params.configure) {
+        if (params.destination && !grunt.file.exists(params.destination) && !params.configure) {
             grunt.file.mkdir(options.destination);
             grunt.log.debug('create destination : ' + options.destination);
             if (!grunt.file.exists(params.destination)) {
@@ -101,17 +101,22 @@ module.exports = function jsDocTask(grunt) {
         }
 
         //execution of the jsdoc command
-        var child = exec.buildSpawned(grunt, jsdoc, sources, params);
+        child = exec.buildSpawned(grunt, jsdoc, sources, params);
 
         child.stdout.on('data', grunt.log.debug);
         child.stderr.on('data', function(data) {
+            grunt.log.debug(data);
             if (!options.ignoreWarnings) {
                 grunt.log.error(data);
             }
         });
         child.on('exit', function(code) {
             if (code === 0) {
-                grunt.log.write('Documentation generated to ' + path.resolve(options.destination));
+                if(options.destination){
+                    grunt.log.write('Documentation generated to ' + path.resolve(options.destination));
+                } else {
+                    grunt.log.write('Documentation generated');
+                }
                 done(true);
             } else {
                 grunt.fail.warn('jsdoc terminated with a non-zero exit code', errorCode.task);

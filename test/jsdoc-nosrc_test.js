@@ -1,7 +1,6 @@
 var testCase = require('./task');
-var pkg = require('../package.json');
 testCase.setUp = function(done){
-    this.destination = 'doc/pack age/' + pkg.name + '/' + pkg.version;
+    this.destination = 'doc/nosrc';
     this.expectedFiles = [
         'index.html',
         'jsdoc-plugin.js.html',
@@ -12,4 +11,4 @@ testCase.setUp = function(done){
     done();
 };
 
-exports.JsDocSpacepackTest = testCase;
+exports.JsDocNoSrcTest = testCase;
