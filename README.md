@@ -48,6 +48,7 @@ The supported options are
  * `jsdoc`: (optional) the path to the jsdoc bin (needed only for some border line cases)
  * `options` : options used by jsdoc
    * `destination`: the folder where the doc is generated
+   * `pipe`: Pipe all of the output from jsdoc to the specified file. Useful for JSON exports
    * ... All jsdoc options are available (see [usejsdocCli](http://usejsdoc.org/about-commandline.html) documentation).
    * `ignoreWarnings` : (optional) do not show jsdoc warnings
 

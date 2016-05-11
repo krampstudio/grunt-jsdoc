@@ -110,6 +110,35 @@ module.exports = function jsDocTask(grunt) {
                 grunt.log.error(data);
             }
         });
+
+        if(options.pipe) {
+
+            var pipeContent = '';
+            child.stdout.on('data', function (data) {
+                pipeContent = pipeContent + data;
+            })
+
+            child.on('exit', function(code) {
+                grunt.file.write(options.pipe, pipeContent);
+            });
+
+            /*
+
+             This is an alternative that works better for larger files, but breaks convention
+
+             var fs = require('fs');
+             var writeStream = fs.createWriteStream(options.pipe);
+             child.stdout.on('data', function (data) {
+                writeStream.write(data);
+             })
+             child.on('exit', function(code) {
+                writeStream.end();
+             });
+
+             */
+        }
+
+
         child.on('exit', function(code) {
             if (code === 0) {
                 if(options.destination){
