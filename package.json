@@ -40,7 +40,7 @@
     "load-grunt-tasks": "^3.5.0"
   },
   "dependencies": {
-    "cross-spawn-async": "^2.2.2",
+    "cross-spawn": "^3.0.1",
     "jsdoc": "^3.4.0"
   },
   "peerDependencies": {

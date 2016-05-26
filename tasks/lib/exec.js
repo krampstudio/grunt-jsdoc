@@ -1,5 +1,5 @@
 var path = require('path');
-var spawn = require('cross-spawn-async');
+var spawn = require('cross-spawn');
 /**
  * Provides utility methods to execute a command
  * @module exec
