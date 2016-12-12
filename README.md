@@ -34,7 +34,7 @@ grunt.initConfig({
         dist : {
             src: ['src/*.js', 'test/*.js'],
             options: {
-                destination: 'doc'
+                dest: 'doc'
             }
         }
     }
