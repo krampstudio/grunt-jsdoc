@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "cross-spawn": "^3.0.1",
-    "jsdoc": "~3.4.0"
+    "jsdoc": "~3.5.5"
   },
   "peerDependencies": {
     "grunt": ">=0.4.5"
