@@ -120,6 +120,7 @@ Every contribution is more than welcomed. You can:
 To be sure the issue comes from the Grunt plugin, you can check by comparing the results with a jsdoc command. Run the task with the `--debug` flag to retrieve the jsdoc command to run.
 
 ## Release History
+ * _2.2.0_ jsdoc 3.5.0
  * _2.1.0_ use `cross-spawn` instead of `cross-spawn-async`, add `generating` and `generated` grunt events
  * _2.0.0_ `private` behavior, `cross-spawn-async` instead of manual windows management
  * _1.1.0_ update to jsdoc 3.4.0 and make dest optional if a config file is set.
