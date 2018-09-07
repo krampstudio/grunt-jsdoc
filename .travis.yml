@@ -1,7 +1,8 @@
 language : node_js
 node_js :
-    - "4.2.0"
-    - "8.5.0"
+    - "6.14.0"
+    - "8.11.4"
+    - "10.10.0"
 before_script :
     - npm --version
 
