@@ -121,6 +121,7 @@ To be sure the issue comes from the Grunt plugin, you can check by comparing the
 
 ## Release History
  * _2.3.0_ jsdoc 3.5.5 and up to date dependencies
+    * _2.3.1_ fix version of transitive dependency `marked` to prevent [regex dos](https://www.npmjs.com/advisories/812)
  * _2.2.0_ jsdoc 3.5.0
     * _2.2.1_ fix version of transitive dependency `marked` to prevent xss
  * _2.1.0_ use `cross-spawn` instead of `cross-spawn-async`, add `generating` and `generated` grunt events
