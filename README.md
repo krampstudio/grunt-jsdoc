@@ -120,6 +120,7 @@ Every contribution is more than welcomed. You can:
 To be sure the issue comes from the Grunt plugin, you can check by comparing the results with a jsdoc command. Run the task with the `--debug` flag to retrieve the jsdoc command to run.
 
 ## Release History
+ * _2.4.0_ jsdoc 3.6.0 (security update) and upgrade node support
  * _2.3.0_ jsdoc 3.5.5 and up to date dependencies
     * _2.3.1_ fix version of transitive dependency `marked` to prevent [regex dos](https://www.npmjs.com/advisories/812)
  * _2.2.0_ jsdoc 3.5.0
