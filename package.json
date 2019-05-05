@@ -41,8 +41,7 @@
   },
   "dependencies": {
     "cross-spawn": "^6.0.5",
-    "jsdoc": "~3.5.5",
-    "marked": "^0.6.2"
+    "jsdoc": "~3.6.0"
   },
   "keywords": [
     "gruntplugin",
