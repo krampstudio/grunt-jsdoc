@@ -121,6 +121,7 @@ To be sure the issue comes from the Grunt plugin, you can check by comparing the
 
 ## Release History
  * _2.4.0_ jsdoc 3.6.0 (security update) and upgrade node support
+    * _2.4.1_ security update
  * _2.3.0_ jsdoc 3.5.5 and up to date dependencies
     * _2.3.1_ fix version of transitive dependency `marked` to prevent [regex dos](https://www.npmjs.com/advisories/812)
  * _2.2.0_ jsdoc 3.5.0
